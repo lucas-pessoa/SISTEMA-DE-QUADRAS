@@ -1,6 +1,7 @@
 <?php
 
-session_start(); // Inicia a session
+if (!isset($_SESSION))
+    session_start();
 
 include "conectabd.php";
 
@@ -8,9 +9,7 @@ $RA = $_POST['RA'];
 $senha = $_POST['senha'];
 
 if ((!$RA) || (!$senha)){
-
-	/*echo "Por favor, todos campos devem ser preenchidos! <br /><br />";
-	include "login.php";*/
+	
 	header("Location: login.php?erro=1");
 
 }else{
@@ -35,14 +34,12 @@ if ((!$RA) || (!$senha)){
 
 			mysqli_query($conectabd, "UPDATE usuarios SET data_ultimo_login = now() WHERE usuario_id ='{$usuario_id}'");
 
-			header("Location: area_restrita.php");
+			header("Location: ../../sistema/pages/index.php");
 
 		}
 
 	}else{
 		header("Location: login.php?erro=2");
-		/*echo "Você não pode logar-se! Este usuário e/ou senha não são válidos!<br /> Por favor tente novamente!<br />";
-		include "login.php";*/
 	}
 }
 

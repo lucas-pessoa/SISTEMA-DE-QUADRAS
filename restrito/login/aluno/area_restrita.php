@@ -1,17 +1,6 @@
 <?php
 
-/*include "functions.php"; // arquivo de funções.*/
-
-function session_checker(){
-	if (!isset($_SESSION['usuario_id'])){
-		header("Location: login.php");
-		exit();
-	}
-}
-
-session_start(); // Inicia a sessão
-
-session_checker(); // chama a função que verifica se a session iniciada da acesso à página.
+include "verificaSessao.php"; // arquivo de funções.*/
 
 echo "Bem vindo <strong>". $_SESSION['nome'] ." ". "</strong>!<br />
 Você está acessando área restrita para usuários cadastrados!

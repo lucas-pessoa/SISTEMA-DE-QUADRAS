@@ -14,6 +14,11 @@ body {
   min-height: 568px;
   background-color: white;
 }
+
+#logotopo{
+  max-width: 190px;
+}
+
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
@@ -64,8 +69,9 @@ body {
   margin-left: -123px;
 }
 .navbar-top-links .dropdown-user {
-  right: 0;
-  left: auto;
+  /*right: 0;
+  left: auto;*/
+  margin-left: 5px;
 }
 .sidebar .sidebar-nav.navbar-collapse {
   padding-left: 0;
