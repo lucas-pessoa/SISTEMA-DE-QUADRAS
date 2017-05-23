@@ -15,10 +15,26 @@
             <!--<img id="profile-img" class="profile-img-card" src="avatar_2x.png" />-->
             <h1 class="text-center">Aluno</h1>
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin">
-                <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="inputRA" name="RA" class="form-control" placeholder="R.A." required autofocus>
-                <input type="password" id="inputPassword" name="senha" class="form-control" placeholder="Senha" required>
+            <form class="form-signin" action="verificalogin.php" method="post">
+                <input type="text" id="RA" name="RA" class="form-control" placeholder="R.A." required autofocus>
+                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+                <?php
+                    $erro = (isset($_GET['erro']) ? $_GET['erro'] : null);
+                    switch($erro){
+                        case 1:
+                            echo "<span class='erro'>Preencha todos os campos.</span>";
+                            break;
+                        case 2:
+                            echo "<span class='erro'>Usuário ou senha inválidos.</span>";
+                            break;
+                    }
+                    $contacriada = (isset($_GET['contacriada']) ? $_GET['contacriada'] : null);
+                    switch($contacriada){
+                        case 1:
+                            echo "<span class='acerto'>Cadastro efetuado com sucesso!</span>";
+                            break;
+                    }
+                ?>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Lembrar senha
@@ -26,9 +42,9 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Acessar</button>
             </form>
-            <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+            <!-- <a href="#" class="forgot-password">Esqueceu sua senha?</a> -->
             <hr>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Cadastre-se</button>
+            <a href="cadastro.php" class="btn btn-lg btn-primary btn-block btn-signin">Cadastre-se</a>
         </div>
     </div>
 </body>

@@ -75,14 +75,13 @@ body, html {
 .form-signin #inputEmail,
 .form-signin #inputPassword {
     direction: ltr;
-    height: 44px;
-    font-size: 16px;
 }
 
+.form-signin select,
 .form-signin input[type=email],
 .form-signin input[type=password],
 .form-signin input[type=text],
-.form-signin button {
+.form-signin button{
     width: 100%;
     display: block;
     margin-bottom: 10px;
@@ -104,7 +103,7 @@ body, html {
     /*background-color: #4d90fe; */
     background-color: rgb(104, 145, 162);
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-    padding: 0px;
+    padding: 8px;
     font-weight: 700;
     font-size: 14px;
     height: 36px;
@@ -133,4 +132,17 @@ body, html {
 .forgot-password:focus{
     color: rgb(12, 97, 33);
 }
-    
+
+.cinza{
+    color: #9999b3;
+}
+
+.erro{
+    font-weight: 600;
+    color: #A10606;
+}
+
+.acerto{
+    font-weight: 600;
+    color: #1A9C14;
+}
