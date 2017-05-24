@@ -1,3 +1,23 @@
+<?php
+
+// Se o usuário já estiver logado, redireciona ele para o sistema restrito até que ele deslogue
+
+function checarSessao(){
+// Verifica se não há a variável da sessão que identifica o usuário
+    if (isset($_SESSION['usuario_id'])){
+// Redireciona o visitante de volta pro sistema restrito
+        header("Location: ../../sistema/pages/index.php");
+        exit;
+    }
+}
+
+if (!isset($_SESSION))
+    session_start();
+
+checarSessao();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

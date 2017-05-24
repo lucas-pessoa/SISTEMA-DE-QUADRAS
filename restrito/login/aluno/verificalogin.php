@@ -17,20 +17,26 @@ if ((!$RA) || (!$senha)){
 	$senha = md5($senha);
 	$sql = mysqli_query($conectabd, "SELECT * FROM usuarios WHERE RA='{$RA}' AND senha='{$senha}' AND ativado='1'");
 
-	$login_check = mysqli_num_rows($sql);
+	$tuplas_check = mysqli_num_rows($sql);
 
-	if ($login_check > 0){
+	if ($tuplas_check > 0){
 
-		while ($row = mysqli_fetch_array($sql)){
-			foreach ($row AS $key => $val){
-				$$key = stripslashes($val); // remove barras '\'
+		while ($tupla = mysqli_fetch_array($sql)){ //$tupla é um array que relaciona as os atributos do banco / nro do vetor, aos seu valores
+			foreach ($tupla AS $atributo => $valor){
+				//atributo são os atributos ou indices do vetor 0/usuario_id, 1/nomeCompleto
+				//valor sao os resultados dos atributos ou indices do vetor 1/1, Lucas/Lucas
+				$$atributo = stripslashes($valor); 
+				// $($atributo) no primeiro vira $usuario_id, e assim por diante. Variavel de variável.
+				// stripslashes remove barras '\'
 			}
 
 			$_SESSION['usuario_id'] = $usuario_id;
-			$_SESSION['nome'] = $nome;
+			$_SESSION['RA'] = $RA;
+			$_SESSION['nome'] = $nomeCompleto;
 			$_SESSION['email'] = $email;
 			$_SESSION['curso'] = $curso;
 			$_SESSION['nivel_usuario'] = $nivel_usuario;
+			$_SESSION['ativado'] = $ativado;
 
 			mysqli_query($conectabd, "UPDATE usuarios SET data_ultimo_login = now() WHERE usuario_id ='{$usuario_id}'");
 
