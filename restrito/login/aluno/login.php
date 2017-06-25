@@ -4,7 +4,7 @@
 
 function checarSessao(){
 // Verifica se não há a variável da sessão que identifica o usuário
-    if (isset($_SESSION['id_usuario'])){
+    if (isset($_SESSION['usuario_id'])){
 // Redireciona o visitante de volta pro sistema restrito
         header("Location: ../../sistema/pages/index.php");
         exit;
@@ -25,7 +25,7 @@ checarSessao();
     <title>Acesso Restrito - Aluno</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/aluno.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/login.css">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
@@ -45,7 +45,7 @@ checarSessao();
                             echo "<span class='erro'>Preencha todos os campos.</span>";
                             break;
                         case 2:
-                            echo "<span class='erro'>RA ou senha inválidos.</span>";
+                            echo "<span class='erro'>Usuário ou senha inválidos.</span>";
                             break;
                     }
                     $contacriada = (isset($_GET['contacriada']) ? $_GET['contacriada'] : null);

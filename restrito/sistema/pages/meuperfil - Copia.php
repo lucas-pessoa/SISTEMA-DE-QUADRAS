@@ -83,11 +83,10 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="meuperfil.php"><i class="fa fa-user fa-fw"></i> Meus dados pessoais</a>
+                        <li><a href="#" data-toggle="modal" data-target="#mConstrucao"><i class="fa fa-user fa-fw"></i> Meus dados pessoais</a>
                         </li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mLogout"><i class="fa fa-sign-out fa-fw"></i> Encerrar sessão</a>
+                        <li><a data-toggle="modal" data-target="#mLogout"><i class="fa fa-sign-out fa-fw"></i> Encerrar sessão</a>
                         </li>
                     </ul>
                 </li>
@@ -99,7 +98,7 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Pesquisar ...">
-                            <span class="input-group-btn">
+                                <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" data-toggle="modal" data-target="#mConstrucao">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -146,7 +145,7 @@
                             }
                         ?>
                         <li>
-                            <a href="meuperfil.php"><i class="fa fa-edit fa-fw"></i> Meu Perfil</a>
+                            <a href="#" data-toggle="modal" data-target="#mConstrucao"><i class="fa fa-edit fa-fw"></i> Meu Perfil</a>
                         </li> 
                         <li>
                             <a href="#" data-toggle="modal" data-target="#mLogout"><i class="fa fa-sign-out fa-fw"></i> Encerrar sessão</a>

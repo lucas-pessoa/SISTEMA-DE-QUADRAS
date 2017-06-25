@@ -1,6 +1,6 @@
 <?php
 
-include "../../conectabd.php";
+include "conectabd.php";
 
 $nome = trim($_POST['nome']); //remove caracteres em branco e outros caracteres prefedinidos
 $email = trim($_POST['email']);
@@ -30,9 +30,9 @@ if ((!$nome) || (!$email) || (!$curso) || (!$RA)){
 
 }else{
 	 //realiza uma consulta no banco
-	$sql_email_check = mysqli_query($conectabd, "SELECT COUNT(id_usuario) FROM aluno WHERE email='{$email}'");
+	$sql_email_check = mysqli_query($conectabd, "SELECT COUNT(usuario_id) FROM usuarios WHERE email='{$email}'");
 
-	$sql_RA_check = mysqli_query($conectabd, "SELECT COUNT(id_usuario) FROM aluno WHERE RA='{$RA}'");
+	$sql_RA_check = mysqli_query($conectabd, "SELECT COUNT(usuario_id) FROM usuarios WHERE RA='{$RA}'");
 
 	$eReg = mysqli_fetch_array($sql_email_check); //Obtém uma linha de resultado como um vetor numero e um associativo
 	$raReg = mysqli_fetch_array($sql_RA_check);
@@ -55,16 +55,16 @@ if ((!$nome) || (!$email) || (!$curso) || (!$RA)){
 	}else{
 
 		$sql = mysqli_query($conectabd,
-			"INSERT INTO aluno(nomeCompleto, RA, senha, curso, email, data_cadastro, nivel_usuario) 
-			VALUES('$nome', '$RA', '$senha', '$curso', '$email', now(), '0')") or die(mysqli_error($conectabd));
+			"INSERT INTO usuarios (nomeCompleto, email, RA, curso, senha, data_cadastro) 
+			VALUES('$nome', '$email', '$RA', '$curso', '$senha', now())") or die(mysqli_error($conectabd));
 
 		if (!$sql){
 			header("Location: cadastro.php?erro=7");
 		}else{
 
-			$id_usuario = mysqli_insert_id($conectabd);
+			$usuario_id = mysqli_insert_id($conectabd);
 
-			$sql = mysqli_query($conectabd, "UPDATE aluno SET ativado='1' WHERE id_usuario='{$id_usuario}'");
+			$sql = mysqli_query($conectabd, "UPDATE usuarios SET ativado='1' WHERE usuario_id='{$usuario_id}' AND senha='{$senha}'");
 
 			header("Location: login.php?contacriada=1");
 		}

@@ -3,7 +3,7 @@
 if (!isset($_SESSION))
     session_start();
 
-include "../../conectabd.php";
+include "conectabd.php";
 
 $RA = $_POST['RA'];
 $senha = $_POST['senha'];
@@ -15,7 +15,7 @@ if ((!$RA) || (!$senha)){
 }else{
 
 	$senha = md5($senha);
-	$sql = mysqli_query($conectabd, "SELECT * FROM aluno WHERE RA='{$RA}' AND senha='{$senha}' AND ativado='1'");
+	$sql = mysqli_query($conectabd, "SELECT * FROM usuarios WHERE RA='{$RA}' AND senha='{$senha}' AND ativado='1'");
 
 	$tuplas_check = mysqli_num_rows($sql);
 
@@ -23,14 +23,14 @@ if ((!$RA) || (!$senha)){
 
 		while ($tupla = mysqli_fetch_array($sql)){ //$tupla é um array que relaciona as os atributos do banco / nro do vetor, aos seu valores
 			foreach ($tupla AS $atributo => $valor){
-				//atributo são os atributos ou indices do vetor 0/id_usuario, 1/nomeCompleto
+				//atributo são os atributos ou indices do vetor 0/usuario_id, 1/nomeCompleto
 				//valor sao os resultados dos atributos ou indices do vetor 1/1, Lucas/Lucas
 				$$atributo = stripslashes($valor); 
-				// $($atributo) no primeiro vira $id_usuario, e assim por diante. Variavel de variável.
+				// $($atributo) no primeiro vira $usuario_id, e assim por diante. Variavel de variável.
 				// stripslashes remove barras '\'
 			}
 
-			$_SESSION['id_usuario'] = $id_usuario;
+			$_SESSION['usuario_id'] = $usuario_id;
 			$_SESSION['RA'] = $RA;
 			$_SESSION['nome'] = $nomeCompleto;
 			$_SESSION['email'] = $email;
@@ -38,7 +38,7 @@ if ((!$RA) || (!$senha)){
 			$_SESSION['nivel_usuario'] = $nivel_usuario;
 			$_SESSION['ativado'] = $ativado;
 
-			mysqli_query($conectabd, "UPDATE aluno SET data_ultimo_login = now() WHERE id_usuario ='{$id_usuario}'");
+			mysqli_query($conectabd, "UPDATE usuarios SET data_ultimo_login = now() WHERE usuario_id ='{$usuario_id}'");
 
 			header("Location: ../../sistema/pages/index.php");
 
