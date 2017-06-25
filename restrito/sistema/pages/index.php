@@ -83,7 +83,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="meuperfil.php"><i class="fa fa-user fa-fw"></i> Meus dados pessoais</a>
+                        <li><a href="meuperfil/meuperfil.php"><i class="fa fa-user fa-fw"></i> Meus dados pessoais</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -111,42 +111,37 @@
                         </li>
                         
                         <li>
-                            <a href="#" data-toggle="modal" data-target="#mConstrucao"><i class="fa fa-calendar fa-fw"></i> Tabela de reservas</a>
+                            <a href="reservas/tabelaReservas.php"><i class="fa fa-calendar fa-fw"></i> Tabela de reservas</a>
                         </li>
-                        <?php
-                        if ($_SESSION['nivel_usuario'] == 3){
-                            echo '
+<?php
+if ($_SESSION['nivel_usuario'] == 3){
+    echo '
+    <li>
+        <a href="#"><i class="fa fa-list-alt fa-fw"></i> Administrar Quadras<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="quadras/listaQuadras.php">Tabela de Quadras</a>
+            </li>
+            <li>
+                <a href="quadras/insereQuadra.php">Inserir Quadra</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-user fa-fw"></i> Gerenciar Usuários<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="usuarios/listaUsuarios.php">Tabela de Usuários</a>
+            </li>
+            <li>
+                <a href="usuarios/insereUsuario.php">Adicionar Usuário</a>
+            </li>
+        </ul>
+    </li>';
+}
+?>
                         <li>
-                            <a href="#"><i class="fa fa-list-alt fa-fw"></i> Administrar Quadras<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#mConstrucao">Tabela de Quadras</a>
-                                </li>
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#mConstrucao">Inserir Quadra</a>
-                                </li>
-                            </ul>
-                        </li>';
-                        }
-                        ?>
-                        <?php
-                            if ($_SESSION['nivel_usuario'] == 3){
-                                echo '
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> Gerenciar Usuários<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="#" data-toggle="modal" data-target="#mConstrucao">Tabela de Usuários</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-toggle="modal" data-target="#mConstrucao">Adicionar Usuário</a>
-                                    </li>
-                                </ul>
-                            </li>';
-                            }
-                        ?>
-                        <li>
-                            <a href="meuperfil.php"><i class="fa fa-edit fa-fw"></i> Meu Perfil</a>
+                            <a href="meuperfil/meuperfil.php"><i class="fa fa-edit fa-fw"></i> Meu Perfil</a>
                         </li> 
                         <li>
                             <a href="#" data-toggle="modal" data-target="#mLogout"><i class="fa fa-sign-out fa-fw"></i> Encerrar sessão</a>
@@ -365,7 +360,7 @@
 </div>
 
 <!-- Modal (em construção) -->
-  <div class="modal fade" id="mConstrucao" role="dialog">
+<!--   <div class="modal fade" id="mConstrucao" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -380,6 +375,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </html>
