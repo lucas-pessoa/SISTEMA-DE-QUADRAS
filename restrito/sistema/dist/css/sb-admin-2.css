@@ -9,7 +9,8 @@ body {
 #wrapper {
   width: 100%;
 }
-#page-wrapper {
+#page-wrap
+per {
   padding: 0 15px;
   min-height: 568px;
   background-color: white;
@@ -17,6 +18,14 @@ body {
 
 #logotopo{
   max-width: 190px;
+}
+
+.esconder{
+  display: none;
+}
+
+.mostrar{
+  display: block;
 }
 
 @media (min-width: 768px) {

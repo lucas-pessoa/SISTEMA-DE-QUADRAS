@@ -15,7 +15,7 @@ if ((!$SIAPE) || (!$senha)){
 }else{
 
 	$senha = md5($senha);
-	$sql = mysqli_query($conectabd, "SELECT * FROM docente WHERE SIAPE='{$SIAPE}' AND senha='{$senha}' AND ativado='1'");
+	$sql = mysqli_query($conectabd, "SELECT * FROM docente WHERE SIAPE='{$SIAPE}' AND senha='{$senha}'");
 
 	$tuplas_check = mysqli_num_rows($sql);
 
@@ -38,14 +38,20 @@ if ((!$SIAPE) || (!$senha)){
 			$_SESSION['nivel_usuario'] = $nivel_usuario;
 			$_SESSION['ativado'] = $ativado;
 
-			mysqli_query($conectabd, "UPDATE docente SET data_ultimo_login = now() WHERE id_usuario ='{$id_usuario}'");
-
-			header("Location: ../../sistema/pages/index.php");
+			if ($_SESSION['ativado'] === '0'){
+				session_destroy();
+				header("Location: login.php?erro=2");
+				exit;
+			}
+			else{
+				mysqli_query($conectabd, "UPDATE docente SET data_ultimo_login = now() WHERE id_usuario ='{$id_usuario}'");
+				header("Location: ../../sistema/pages/index.php");
+			}
 
 		}
 
 	}else{
-		header("Location: login.php?erro=2");
+		header("Location: login.php?erro=3");
 	}
 }
 

@@ -45,6 +45,9 @@ checarSessao();
                             echo "<span class='erro'>Preencha todos os campos.</span>";
                             break;
                         case 2:
+                            echo "<span class='erro'>Esta conta não está ativada.</span>";
+                            break;
+                        case 3:
                             echo "<span class='erro'>CNPJ ou senha inválidos.</span>";
                             break;
                     }
