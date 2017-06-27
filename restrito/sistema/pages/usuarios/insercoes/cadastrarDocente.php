@@ -1,6 +1,6 @@
 <?php
 
-include "../../conectabd.php";
+include "../../../../conectabd.php";
 
 $nome = trim($_POST['nome']); //remove caracteres em branco e outros caracteres prefedinidos
 $email = trim($_POST['email']);
@@ -13,19 +13,19 @@ $senha = md5($_POST['senha']);
 if ((!$nome) || (!$email) || (!$departamento) || (!$SIAPE)){
 
 	if (!$nome){
-		header("Location: cadastro.php?erro=1");
+		header("Location: ../insereUsuario.php?user=docente&erro=1");
 	}
 
 	if (!$email){
-		header("Location: cadastro.php?erro=2");
+		header("Location: ../insereUsuario.php?user=docente&erro=2");
 	}
 
 	if (!$departamento){
-		header("Location: cadastro.php?erro=3");
+		header("Location: ../insereUsuario.php?user=docente&erro=3");
 	}
 
 	if (!$SIAPE){
-		header("Location: cadastro.php?erro=4");
+		header("Location: ../insereUsuario.php?user=docente&erro=4");
 	}
 
 }else{
@@ -44,12 +44,12 @@ if ((!$nome) || (!$email) || (!$departamento) || (!$SIAPE)){
 
 		if ($email_check > 0){
 		unset($email);
-		header("Location: cadastro.php?erro=5");
+		header("Location: ../insereUsuario.php?user=docente&erro=5");
 		}
 
 		if ($SIAPE_check > 0){
 		unset($SIAPE);
-		header("Location: cadastro.php?erro=6");
+		header("Location: ../insereUsuario.php?user=docente&erro=6");
 		}
 
 	}else{
@@ -59,14 +59,14 @@ if ((!$nome) || (!$email) || (!$departamento) || (!$SIAPE)){
 			VALUES('$nome', '$SIAPE', '$senha', '$departamento', '$email', now(), '1')") or die(mysqli_error($conectabd));
 
 		if (!$sql){
-			header("Location: cadastro.php?erro=7");
+			header("Location: ../insereUsuario.php?user=docente&erro=7");
 		}else{
 
 			$id_usuario = mysqli_insert_id($conectabd);
 
 			$sql = mysqli_query($conectabd, "UPDATE docente SET ativado='1' WHERE id_usuario='{$id_usuario}'");
 
-			header("Location: login.php?contacriada=1");
+			header("Location: ../insereUsuario.php?user=docente&contacriada=1");
 		}
 	}
 }

@@ -169,7 +169,7 @@ include "../verificaSessao.php";
                                     <form method="post">
                                         <div class="form-group text-center">
                                             <label>Selecione o tipo de usuário a ser listado</label><br>
-                                            <select id ="tipouser" class="form-control" style="max-width: 300px; margin: 0 auto" onchange="carregaTabela(this.value, 1)">
+                                            <select id ="tipouser" class="form-control" style="max-width: 300px; margin: 0 auto" onchange="carregaTabela(1)">
                                                 <option disabled selected value>Escolha um tipo de usuário</option>
                                                 <option value="aluno">Aluno</option>
                                                 <option value="docente">Docente</option>
@@ -177,99 +177,101 @@ include "../verificaSessao.php";
                                                 <option value="administrador">Administrador</option>
                                             </select>
                                         </div>
+                                        <div id="executaTarefa"></div>
                                         <hr>
-                                        <div id="tabelaUsuarios">
-                                        <!-- PHP cria div com tabela de usuários-->
-                                        </div>
+                                        <!-- PHP cria div com tabela de usuários e páginas-->
+                                        <div id="tabelaUsuarios"></div>
 
-                                        <!-- PHP cria div com quantidade de páginas-->
-
-                                                <div class="modal fade bs-example-modal-sm" id="mAtualizar" role="dialog">
-                                                    <div class="modal-dialog modal-sm">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                <h4 class="modal-title">Atualização de dados</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>Confirmar a atualização dos dados cadastrais?</p>
-                                                            </div>  
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                                                <button type="submit" class="btn btn-primary">Sim</button>
-                                                            </div>
-                                                        </div>
+                                        <div class="modal fade bs-example-modal-sm" id="mApagar" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Apagar</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Confirmar a remoção do usuário?</p>
+                                                    </div>  
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                                                        <button type="submit" class="btn btn-danger">Sim</button>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </body>
+            </div>
+        </div>
+    </body>
 
-            <!-- jQuery -->
-            <script src="../../vendor/jquery/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
 
-            <!-- Bootstrap Core JavaScript -->
-            <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-            <!-- Metis Menu Plugin JavaScript -->
-            <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
 
-            <!-- Morris Charts JavaScript -->
-            <script src="../../vendor/raphael/raphael.min.js"></script>
-            <script src="../../vendor/morrisjs/morris.min.js"></script>
-            <script src="../../data/morris-data.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="../../vendor/raphael/raphael.min.js"></script>
+    <script src="../../vendor/morrisjs/morris.min.js"></script>
+    <script src="../../data/morris-data.js"></script>
 
-            <!-- Custom Theme JavaScript -->
-            <script src="../../dist/js/sb-admin-2.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../../dist/js/sb-admin-2.js"></script>
 
-            <script>
-            // Função para dar load nos dados do banco de dados, via ajax, passando a página como parâmetro
-            function mudaPagina(numero, totalPgs){
-                var valorSeletor = document.getElementById("tipouser").value;
-                carregaTabela(valorSeletor, numero, 10);
-            }
-
-            function carregaTabela(tipoUsuario, nroPg, totalPgs){
+    <script>
+            // Função para dar load nos dados do banco de dados, via ajax, passando tipo, numero de paginas e total como parâmetro
+            function carregaTabela(nroPg){
+                var tipoUsuario = document.getElementById("tipouser").value;
                 $.post("tabelaUsuarios.php", "pag=" + nroPg + "&user=" + tipoUsuario).done(function(data){
 
-                    for(var i = 1 ; i <= totalPgs ; i++){ //For para mudar o css do contador de páginas (CORRIGIR)
+                    $("#tabelaUsuarios").html(data);
+
+                    var totalPaginas = $('#listaPgs li');
+
+                    for(var i = 1 ; i <= totalPaginas.length ; i++){ //For para mudar o css do contador de páginas
                         $('#pagina' + i).removeClass('active');
                     }
 
-                    //$('#pagina' + nroPg).addClass('active');
-                    $("#tabelaUsuarios").html(data);
+                    $('#pagina' + nroPg).addClass('active');
+
                 });
             }
 
-            /*$(document).ready(function() {
-            $("#tabelaUsuarios").load("tabelaUsuarios.php?pag=1");
-            });*/
-            </script>
+            function removeUsuario(tabelaUsuario, nroUsuario){
+                $.post("listagens/removeUsuario.php", "tabela=" + tabelaUsuario + "&nro_id=" + nroUsuario).done(function(data){
+                    $("#executaTarefa").html(data);
+                });
+            }
 
-<!-- SModal Logout -->
-<div class="modal fade bs-example-modal-sm" id="mLogout" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Encerrar sessão</h4>
-            </div>
-            <div class="modal-body">
-                <p>Você gostaria mesmo de sair?</p>
-            </div>  
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <a href="../logout.php" class="btn btn-primary">Sim</a>
-                <!-- <button type="button" class="btn btn-primary">Sim</button> -->
+        </script>
+
+        <!-- SModal Logout -->
+        <div class="modal fade bs-example-modal-sm" id="mLogout" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Encerrar sessão</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Você gostaria mesmo de sair?</p>
+                    </div>  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <a href="../logout.php" class="btn btn-primary">Sim</a>
+                        <!-- <button type="button" class="btn btn-primary">Sim</button> -->
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-</html>
+        </html>

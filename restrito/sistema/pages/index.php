@@ -174,7 +174,7 @@ if ($_SESSION['nivel_usuario'] == 3){
                                     <em>This is an example of emphasized, italic text.</em>
                                 </p>
                                 <br> -->
-                        <p class="text-justify">A plataforma tem o objetivo de auxiliar a prática de reserva das quadras da UFSCar. Cada reserva pode ser feita por alunos, docentes e organização acadêmica, sendo que a diferença entre cada um é antecedência com que eles podem executar a reserva da quadra.</p>
+                        <p class="text-justify">A plataforma tem o objetivo de auxiliar a prática de reserva das quadras da UFSCar. Cada reserva pode ser feita por alunos, docentes e organizações acadêmicas, sendo que a diferença entre cada um é antecedência com que eles podem executar a reserva da quadra.</p>
                         <hr>
                     </div>
 
@@ -188,7 +188,7 @@ if ($_SESSION['nivel_usuario'] == 3){
                             <p>
                                 <ul>
                                     <li><strong>Aluno: </strong> 1 dia</li>
-                                    <li><strong>Atlética: </strong> 7 dias</li>
+                                    <li><strong>Org. Acadêmica: </strong> 7 dias</li>
                                     <li><strong>Docente: </strong> 3 dias</li>
                                 </ul>
                             </p>

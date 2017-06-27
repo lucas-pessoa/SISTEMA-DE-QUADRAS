@@ -17,14 +17,15 @@ if (isset($_POST["user"])) {
 
 $comeca_de = ($pag-1) * $limite;  
 
-$sql = "SELECT * FROM $user ORDER BY id_usuario ASC LIMIT $comeca_de, $limite";  
+$sql = "SELECT * FROM $user ORDER BY id_usuario ASC LIMIT $comeca_de, $limite"; //seleciona usuarios de forma ascendente
 $resultado = mysqli_query($conectabd, $sql);
 
-$sql2 = "SELECT COUNT(id_usuario) FROM $user"; //tornar dinamico
+$sql2 = "SELECT COUNT(id_usuario) FROM $user"; //conta a quantidade de usuarios para calcular as paginas
 $resultado2 = mysqli_query($conectabd, $sql2);
+
 $array2 = mysqli_fetch_row($resultado2);  
-$total_registros2 = $array2[0];  
-$total_paginas2 = ceil($total_registros2 / $limite); 
+$total_registros = $array2[0]; //quantidade de tuplas encontradas
+$total_paginas = ceil($total_registros / $limite); //divide e se der quebrado, pega o valor arredondado pra cima
 
 echo '
 <div class="table-responsive">
@@ -79,26 +80,25 @@ echo '
 					<td>' . $array["nivel_usuario"] . '</td>
 					<td>' . $array["ativado"] . '</td>
 					<td>
-						<button id="editar' . $array["id_usuario"] . '" class="btn btn-sm btn-warning" style="margin-bottom: 5px; width:62px">Editar</button><br>
-						<button id="apagar' . $array["id_usuario"] . '" class="btn btn-sm btn-danger">Apagar</button>
+						<a href="#" id="editar' . $array["id_usuario"] . '" class="btn btn-sm btn-warning" style="margin-bottom: 5px; width:62px">Editar</a><br>
+						<a href="" id="apagar' . $array["id_usuario"] . '" class="btn btn-sm btn-danger" onclick="removeUsuario(\'' . $_POST["user"] .'\', ' . $array["id_usuario"] . '); mudaPagina(1, 10); return false">Apagar</a> 
 					</td>
 				  </tr>';
 		}  
-
+/* RESOLVER VALORES INTERNOS DO MUDA PAGINA*/
 echo '
 	</tbody>  
 </table>
 </div>
 
 <div id="paginas" align="center">
-	<ul class="pagination text-center" id="tabelaUsuarios">';
+	<ul id="listaPgs" class="pagination text-center">';
 
-    if(!empty($total_paginas2))
-        for($i=1; $i<=$total_paginas2; $i++)
+        for($i = 1; $i <= $total_paginas; $i++)
             if($i == 1)
-                echo '<li class="active" id="pagina' . $i . '"><a href="" onclick="mudaPagina(' . $i . ',' . $total_paginas2 . ');return false">' .  $i . '</a></li>';
+                echo '<li class="active" id="pagina' . $i . '"><a href="" onclick="carregaTabela(' . $i . ');return false">' .  $i . '</a></li>';
             else
-                echo '<li id="pagina'. $i . '"><a href="" onclick="mudaPagina(' . $i . ',' . $total_paginas2 . ');return false">' . $i . '</a></li>';
+                echo '<li id="pagina'. $i . '"><a href="" onclick="carregaTabela(' . $i . ');return false">' . $i . '</a></li>';
 
 echo '
 	</ul>

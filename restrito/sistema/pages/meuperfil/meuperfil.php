@@ -172,7 +172,7 @@ include "../verificaSessao.php";
                                 <div class="row">
                                     <div class="col-lg-12">
 
-                                        <form method="post" action="meuperfil/atualizadados.php">
+                                        <form method="post" action="atualizadados.php">
                                             <div class="form-group">
                                                 <label>Nome Completo</label>
                                                 <input class="form-control" name="novoNome" id="novoNome" placeholder="Insira seu nome completo" value="<?php echo $_SESSION['nome'];?>">
@@ -417,24 +417,6 @@ include "../verificaSessao.php";
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal (em construção) -->
-<div class="modal fade" id="mConstrucao" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Em construção</h4>
-      </div>
-      <div class="modal-body">
-          <p>Esta função ainda está em fase de implementação.</p>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-      </div>
-  </div>
-</div>
 </div>
 
 </html>

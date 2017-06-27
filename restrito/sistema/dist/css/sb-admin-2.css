@@ -28,6 +28,16 @@ per {
   display: block;
 }
 
+.erro{
+    font-weight: 600;
+    color: #A10606;
+}
+
+.acerto{
+    font-weight: 600;
+    color: #1A9C14;
+}
+
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;

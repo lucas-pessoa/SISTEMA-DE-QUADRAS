@@ -172,51 +172,140 @@
                                 <div class="row">
                                     <div class="col-lg-12">
 
-                                        <form method="post" action="meuperfil/atualizadados.php">
+                                        <form id="radioForm" method="post" action="meuperfil/atualizadados.php">
                                             <div class="form-group text-center">
                                                 <label>Selecione o tipo de usuário a ser inserido</label><br>
 
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" onclick="aluno()">Aluno
+                                                    <input type="radio" name="optionUsuario" id="optionAluno" value="aluno" onclick="aluno()">Aluno
                                                 </label>
 
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2" onclick="docente()">Docente
+                                                    <input type="radio" name="optionUsuario" id="optionDocente" value="docente" onclick="docente()">Docente
                                                 </label>
 
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3" onclick="orgacad()">Organização Acadêmica
+                                                    <input type="radio" name="optionUsuario" id="optionOrgAcad" value="orgacademica" onclick="orgacad()">Organização Acadêmica
                                                 </label>
 
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option4" onclick="admin()">Administrador
+                                                    <input type="radio" name="optionUsuario" id="optionAdmin" value="administrador" onclick="admin()">Administrador
                                                 </label>
-
+                                            </form>
                                             </div>
                                             <hr>
                                             <div id="formulario">
+                                            <?php 
+                                                $erro = (isset($_GET['erro']) ? $_GET['erro'] : null);
+                                                $user = (isset($_GET['user']) ? $_GET['user'] : null);
+                                                $contacriada = (isset($_GET['contacriada']) ? $_GET['contacriada'] : null);
+                                                switch($user){
+                                                    case "aluno":
+                                                        switch($erro){
+                                                        case 1:
+                                                            echo "<p class='erro text-center'>O campo nome completo é necessário.</p>";
+                                                            break;
+                                                        case 2:
+                                                            echo "<p class='erro text-center'>O campo e-mail é necessário.</p>";
+                                                            break;
+                                                        case 3:
+                                                            echo "<p class='erro text-center'>O campo curso é necessário.</p>";
+                                                            break;
+                                                        case 4:
+                                                            echo "<p class='erro text-center'>O campo R.A. é necessário.</p>";
+                                                            break;
+                                                        case 5:
+                                                            echo "<p class='erro text-center'>Este e-mail já está cadastrado.</p>";
+                                                            break;
+                                                        case 6:
+                                                            echo "<p class='erro text-center'>Este R.A. já está cadastrado.</p>";
+                                                            break;
+                                                        case 7:
+                                                            echo "<p class='erro text-center'>Erro na criação. Entre em contato conosco.</p>";
+                                                            break;
+                                                        }
+                                                        break;
+
+                                                    case "docente":
+                                                        switch($erro){
+                                                        case 1:
+                                                            echo "<p class='erro text-center'>O campo nome completo é necessário.</p>";
+                                                            break;
+                                                        case 2:
+                                                            echo "<p class='erro text-center'>O campo e-mail é necessário.</p>";
+                                                            break;
+                                                        case 3:
+                                                            echo "<p class='erro text-center'>O campo departamento é necessário.</p>";
+                                                            break;
+                                                        case 4:
+                                                            echo "<p class='erro text-center'>O campo SIAPE é necessário.</p>";
+                                                            break;
+                                                        case 5:
+                                                            echo "<p class='erro text-center'>Este e-mail já está cadastrado.</p>";
+                                                            break;
+                                                        case 6:
+                                                            echo "<p class='erro text-center'>Este SIAPE já está cadastrado.</p>";
+                                                            break;
+                                                        case 7:
+                                                            echo "<p class='erro text-center'>erro text-center na criação. Entre em contato conosco.</p>";
+                                                            break;
+                                                        }
+                                                        break;
+
+                                                    case "orgacademica":
+                                                        switch($erro){
+                                                        case 1:
+                                                            echo "<p class='erro text-center'>O campo nome completo é necessário.</p>";
+                                                            break;
+                                                        case 2:
+                                                            echo "<p class='erro text-center'>O campo e-mail é necessário.</p>";
+                                                            break;
+                                                        case 3:
+                                                            echo "<p class='erro text-center'>O campo CNPJ é necessário.</p>";
+                                                            break;
+                                                        case 4:
+                                                            echo "<p class='erro text-center'>Este e-mail já está cadastrado.</p>";
+                                                            break;
+                                                        case 5:
+                                                            echo "<p class='erro text-center'>Este CNPJ já está cadastrado.</p>";
+                                                            break;
+                                                        case 6:
+                                                            echo "<p class='erro text-center'>Erro na criação. Entre em contato conosco.</p>";
+                                                            break;
+                                                        }
+                                                        break;
+
+                                                    case "administrador":
+                                                        switch($erro){
+                                                        case 1:
+                                                            echo "<p class='erro text-center'>O campo nome completo é necessário.</p>";
+                                                            break;
+                                                        case 2:
+                                                            echo "<p class='erro text-center'>O campo e-mail é necessário.</p>";
+                                                            break;
+                                                        case 3:
+                                                            echo "<p class='erro text-center'>O campo login é necessário.</p>";
+                                                            break;
+                                                        case 4:
+                                                            echo "<p class='erro text-center'>Este e-mail já está cadastrado.</p>";
+                                                            break;
+                                                        case 5:
+                                                            echo "<p class='erro text-center'>Este login já está cadastrado.</p>";
+                                                            break;
+                                                        case 6:
+                                                            echo "<p class='erro text-center'>Erro na criação. Entre em contato conosco.</p>";
+                                                            break;
+                                                        }
+                                                        break;
+                                                }
+
+                                                        switch($contacriada){
+                                                            case 1:
+                                                                echo "<p class='acerto text-center'>Cadastro efetuado com sucesso!</p>";
+                                                                break;
+                                                        }
+                                            ?>
                                             </div>
-                                            <!-- SModal Atualizar -->
-                                            <div class="modal fade bs-example-modal-sm" id="mAtualizar" role="dialog">
-                                              <div class="modal-dialog modal-sm">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Atualização de dados</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Confirmar a atualização dos dados cadastrais?</p>
-                                                    </div>  
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                                        <button type="submit" class="btn btn-primary">Sim</button>
-                                                    </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <!-- Fim SModal Atualizar -->
-                                        </form>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -243,20 +332,21 @@
     <script src="../../dist/js/sb-admin-2.js"></script>
 
     <script>
+
         function aluno(){
-            document.getElementById("formulario").innerHTML = "<div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>Curso</label> <select id='curso' name='curso' class='form-control' required> <option disabled selected value>Escolha seu curso</option> <option value='Administração'>Administração</option> <option value='Agroecologia'>Agroecologia</option> <option value='Biblioteconomia e Ciência da Informação'>Biblioteconomia e Ciência da Informação</option> <option value='Biotecnologia'>Biotecnologia</option> <option value='Ciências Biológicas'>Ciências Biológicas</option> <option value='Ciência da Computação'>Ciência da Computação</option> <option value='Ciências Econômicas'>Ciências Econômicas</option> <option value='Ciências Sociais'>Ciências Sociais</option> <option value='Educação Especial'>Educação Especial</option> <option value='Educação Física'>Educação Física</option> <option value='Educação Musical'>Educação Musical</option> <option value='Enfermagem'>Enfermagem</option> <option value='Engenharia Agronômica'>Engenharia Agronômica</option> <option value='Engenharia Ambiental'>Engenharia Ambiental</option> <option value='Engenharia Civil'>Engenharia Civil</option> <option value='Engenharia de Alimentos'>Engenharia de Alimentos</option> <option value='Engenharia de Computação'>Engenharia de Computação</option> <option value='Engenharia de Materiais'>Engenharia de Materiais</option> <option value='Engenharia de Produção'>Engenharia de Produção</option> <option value='Engenharia Elétrica'>Engenharia Elétrica</option> <option value='Engenharia Física'>Engenharia Física</option> <option value='Engenharia Florestal'>Engenharia Florestal</option> <option value='Engenharia Mecânica'>Engenharia Mecânica</option> <option value='Engenharia Química'>Engenharia Química</option> <option value='Estatistica'>Estatística</option> <option value='Filosofia'>Filosofia</option> <option value='Fisica'>Física</option> <option value='Fisioterapia'>Fisioterapia</option> <option value='Geografia'>Geografia</option> <option value='Gerontologia'>Gerontologia</option> <option value='Gestão e Análise Ambiental'>Gestão e Análise Ambiental</option> <option value='Imagem e Som'>Imagem e Som</option> <option value='Letras'>Letras</option> <option value='Linguistica'>Linguística</option> <option value='Matematica'>Matemática</option> <option value='Medicina'>Medicina</option> <option value='Musica'>Música</option> <option value='Pedagogia'>Pedagogia</option> <option value='Psicologia'>Psicologia</option> <option value='Quimica'>Química</option> <option value='Sistemas de Informação'>Sistemas de Informação</option> <option value='Tecnologia em Produção Sucroalcooleira'>Tecnologia em Produção Sucroalcooleira</option> <option value='Terapia Ocupacional'>Terapia Ocupacional</option> <option value='Tradução e Interpretação em Língua Brasileira de Sinais'>Tradução e Interpretação em Língua Brasileira de Sinais</option> <option value='Turismo'>Turismo</option> </select></div><div class='form-group'><label>R.A.</label><input class='form-control' name='RA' id='RA' placeholder='Insira o R.A.' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><a href='#' data-toggle='modal' data-target='#mAtualizar' class='btn btn-primary btn-lg'>Inserir usuário</a></div>";
+            document.getElementById("formulario").innerHTML = "<form action='insercoes/cadastrarAluno.php' method='POST'><div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>Curso</label> <select id='curso' name='curso' class='form-control' required> <option disabled selected value>Escolha seu curso</option> <option value='Administração'>Administração</option> <option value='Agroecologia'>Agroecologia</option> <option value='Biblioteconomia e Ciência da Informação'>Biblioteconomia e Ciência da Informação</option> <option value='Biotecnologia'>Biotecnologia</option> <option value='Ciências Biológicas'>Ciências Biológicas</option> <option value='Ciência da Computação'>Ciência da Computação</option> <option value='Ciências Econômicas'>Ciências Econômicas</option> <option value='Ciências Sociais'>Ciências Sociais</option> <option value='Educação Especial'>Educação Especial</option> <option value='Educação Física'>Educação Física</option> <option value='Educação Musical'>Educação Musical</option> <option value='Enfermagem'>Enfermagem</option> <option value='Engenharia Agronômica'>Engenharia Agronômica</option> <option value='Engenharia Ambiental'>Engenharia Ambiental</option> <option value='Engenharia Civil'>Engenharia Civil</option> <option value='Engenharia de Alimentos'>Engenharia de Alimentos</option> <option value='Engenharia de Computação'>Engenharia de Computação</option> <option value='Engenharia de Materiais'>Engenharia de Materiais</option> <option value='Engenharia de Produção'>Engenharia de Produção</option> <option value='Engenharia Elétrica'>Engenharia Elétrica</option> <option value='Engenharia Física'>Engenharia Física</option> <option value='Engenharia Florestal'>Engenharia Florestal</option> <option value='Engenharia Mecânica'>Engenharia Mecânica</option> <option value='Engenharia Química'>Engenharia Química</option> <option value='Estatistica'>Estatística</option> <option value='Filosofia'>Filosofia</option> <option value='Fisica'>Física</option> <option value='Fisioterapia'>Fisioterapia</option> <option value='Geografia'>Geografia</option> <option value='Gerontologia'>Gerontologia</option> <option value='Gestão e Análise Ambiental'>Gestão e Análise Ambiental</option> <option value='Imagem e Som'>Imagem e Som</option> <option value='Letras'>Letras</option> <option value='Linguistica'>Linguística</option> <option value='Matematica'>Matemática</option> <option value='Medicina'>Medicina</option> <option value='Musica'>Música</option> <option value='Pedagogia'>Pedagogia</option> <option value='Psicologia'>Psicologia</option> <option value='Quimica'>Química</option> <option value='Sistemas de Informação'>Sistemas de Informação</option> <option value='Tecnologia em Produção Sucroalcooleira'>Tecnologia em Produção Sucroalcooleira</option> <option value='Terapia Ocupacional'>Terapia Ocupacional</option> <option value='Tradução e Interpretação em Língua Brasileira de Sinais'>Tradução e Interpretação em Língua Brasileira de Sinais</option> <option value='Turismo'>Turismo</option> </select></div><div class='form-group'><label>R.A.</label><input class='form-control' name='RA' id='RA' placeholder='Insira o R.A.' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><button type='submit' class='btn btn-primary btn-lg'>Inserir aluno</button></div></form>";
         }
 
         function docente(){
-            document.getElementById("formulario").innerHTML = "<div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>Departamento</label><select id='departamento' name='departamento' class='form-control' required> <option disabled selected value>Escolha o departamento</option> <option value='Artes e Comunicação - DAC'>Artes e Comunicação - DAC</option> <option value='Botânica - DB'>Botânica - DB</option> <option value='Ciência da Informação - DCI'>Ciência da Informação - DCI</option> <option value='Ciências Ambientais - DCAm'>Ciências Ambientais - DCAm</option> <option value='Ciências Fisiológicas - DCF'>Ciências Fisiológicas - DCF</option> <option value='Ciências Sociais - DCSo'>Ciências Sociais - DCSo</option> <option value='Computação - DC'>Computação - DC</option> <option value='Ecologia e Biologia Evolutiva - DEBE'>Ecologia e Biologia Evolutiva - DEBE</option> <option value='Educação - DEd'>Educação - DEd</option> <option value='Educação Física e Motricidade Humana - DEFMH'>Educação Física e Motricidade Humana - DEFMH</option> <option value='Enfermagem - DEnf'>Enfermagem - DEnf</option> <option value='Engenharia Civil - DECiv'>Engenharia Civil - DECiv</option> <option value='Engenharia Elétrica - DEE'>Engenharia Elétrica - DEE</option> <option value='Engenharia Mecânica - DEMec'>Engenharia Mecânica - DEMec</option> <option value='Engenharia Química - DEQ'>Engenharia Química - DEQ</option> <option value='Engenharia de Materiais - DEMa'>Engenharia de Materiais - DEMa</option> <option value='Engenharia de Produção - DEP'>Engenharia de Produção - DEP</option> <option value='Estatística - DEs'>Estatística - DEs</option> <option value='Filosofia e Metodologia das Ciências - DFMC'>Filosofia e Metodologia das Ciências - DFMC</option> <option value='Fisioterapia - DFisio'>Fisioterapia - DFisio</option> <option value='Física - DF'>Física - DF</option> <option value='Genética e Evolução - DGE'>Genética e Evolução - DGE</option> <option value='Gerontologia - DGero'>Gerontologia - DGero</option> <option value='Hidrobiologia - DHb'>Hidrobiologia - DHb</option> <option value='Letras - DL'>Letras - DL</option> <option value='Matemática - DM'>Matemática - DM</option> <option value='Medicina - DMed'>Medicina - DMed</option> <option value='Metodologia de Ensino - DME'>etodologia de Ensino - DME</option> <option value='Morfologia e Patologia - DMP'>Morfologia e Patologia - DMP</option> <option value='Psicologia - DPsi'>sicologia - DPsi</option> <option value='Química - DQ'>Química - DQ</option> <option value='Sociologia - DS'>Sociologia - DS</option> <option value='Teorias e Práticas Pedagógicas - DTPP'>Teorias e Práticas Pedagógicas - DTPP</option> <option value='Terapia Ocupacional - DTO'>Terapia Ocupacional - DTO</option></select></div><div class='form-group'><label>SIAPE</label><input class='form-control' name='SIAPE' id='SIAPE' placeholder='Insira o SIAPE' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><a href='#' data-toggle='modal' data-target='#mAtualizar' class='btn btn-primary btn-lg'>Inserir usuário</a></div>";
+            document.getElementById("formulario").innerHTML = "<form action='insercoes/cadastrarDocente.php' method='POST'><div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>Departamento</label><select id='departamento' name='departamento' class='form-control' required> <option disabled selected value>Escolha o departamento</option> <option value='Artes e Comunicação - DAC'>Artes e Comunicação - DAC</option> <option value='Botânica - DB'>Botânica - DB</option> <option value='Ciência da Informação - DCI'>Ciência da Informação - DCI</option> <option value='Ciências Ambientais - DCAm'>Ciências Ambientais - DCAm</option> <option value='Ciências Fisiológicas - DCF'>Ciências Fisiológicas - DCF</option> <option value='Ciências Sociais - DCSo'>Ciências Sociais - DCSo</option> <option value='Computação - DC'>Computação - DC</option> <option value='Ecologia e Biologia Evolutiva - DEBE'>Ecologia e Biologia Evolutiva - DEBE</option> <option value='Educação - DEd'>Educação - DEd</option> <option value='Educação Física e Motricidade Humana - DEFMH'>Educação Física e Motricidade Humana - DEFMH</option> <option value='Enfermagem - DEnf'>Enfermagem - DEnf</option> <option value='Engenharia Civil - DECiv'>Engenharia Civil - DECiv</option> <option value='Engenharia Elétrica - DEE'>Engenharia Elétrica - DEE</option> <option value='Engenharia Mecânica - DEMec'>Engenharia Mecânica - DEMec</option> <option value='Engenharia Química - DEQ'>Engenharia Química - DEQ</option> <option value='Engenharia de Materiais - DEMa'>Engenharia de Materiais - DEMa</option> <option value='Engenharia de Produção - DEP'>Engenharia de Produção - DEP</option> <option value='Estatística - DEs'>Estatística - DEs</option> <option value='Filosofia e Metodologia das Ciências - DFMC'>Filosofia e Metodologia das Ciências - DFMC</option> <option value='Fisioterapia - DFisio'>Fisioterapia - DFisio</option> <option value='Física - DF'>Física - DF</option> <option value='Genética e Evolução - DGE'>Genética e Evolução - DGE</option> <option value='Gerontologia - DGero'>Gerontologia - DGero</option> <option value='Hidrobiologia - DHb'>Hidrobiologia - DHb</option> <option value='Letras - DL'>Letras - DL</option> <option value='Matemática - DM'>Matemática - DM</option> <option value='Medicina - DMed'>Medicina - DMed</option> <option value='Metodologia de Ensino - DME'>etodologia de Ensino - DME</option> <option value='Morfologia e Patologia - DMP'>Morfologia e Patologia - DMP</option> <option value='Psicologia - DPsi'>sicologia - DPsi</option> <option value='Química - DQ'>Química - DQ</option> <option value='Sociologia - DS'>Sociologia - DS</option> <option value='Teorias e Práticas Pedagógicas - DTPP'>Teorias e Práticas Pedagógicas - DTPP</option> <option value='Terapia Ocupacional - DTO'>Terapia Ocupacional - DTO</option></select></div><div class='form-group'><label>SIAPE</label><input class='form-control' name='SIAPE' id='SIAPE' placeholder='Insira o SIAPE' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><button type='submit' class='btn btn-primary btn-lg'>Inserir docente</button></div></form>";
         }
 
         function orgacad(){
-            document.getElementById("formulario").innerHTML = "<div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>CNPJ</label><input class='form-control' name='CNPJ' id='CNPJ' placeholder='Insira o CNPJ' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><a href='#' data-toggle='modal' data-target='#mAtualizar' class='btn btn-primary btn-lg'>Inserir usuário</a></div>";
+            document.getElementById("formulario").innerHTML = "<form action='insercoes/cadastrarOrgAcad.php' method='POST'><div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>CNPJ</label><input class='form-control' name='CNPJ' id='CNPJ' placeholder='Insira o CNPJ' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><button type='submit' class='btn btn-primary btn-lg'>Inserir organização acadêmica</button></div></form>";
         }
 
         function admin(){
-            document.getElementById("formulario").innerHTML = "<div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>Login</label><input class='form-control' name='Login' id='Login' placeholder='Insira o login' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><a href='#' data-toggle='modal' data-target='#mAtualizar' class='btn btn-primary btn-lg'>Inserir usuário</a></div>";
+            document.getElementById("formulario").innerHTML = "<form action='insercoes/cadastrarAdmin.php' method='POST'><div class='form-group'><label>Nome Completo</label><input class='form-control' name='nome' id='nome' placeholder='Insira o nome completo' required autofocus></div><div class='form-group'><label>E-mail</label><input type='email' class='form-control' name='email' id='email' placeholder='Insira o endereço de e-mail' required></div><div class='form-group'><label>Login</label><input class='form-control' name='login' id='login' placeholder='Insira o login' required></div><div class='form-group'><label>Senha</label><input class='form-control' name='senha' id='senha' placeholder='Insira a senha' required></div><hr><div class='form-group text-center'><button type='submit' class='btn btn-primary btn-lg'>Inserir administrador</button></div></form>";
         }
     </script>
 </body>

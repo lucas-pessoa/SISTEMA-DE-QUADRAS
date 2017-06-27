@@ -119,14 +119,6 @@ else{
 					$_SESSION['ativado'] = $ativado;
 					break;
 				}
-
-				$_SESSION['id_usuario'] = $id_usuario;
-				$_SESSION['RA'] = $RA;
-				$_SESSION['nome'] = $nomeCompleto;
-				$_SESSION['email'] = $email;
-				$_SESSION['curso'] = $curso;
-				$_SESSION['nivel_usuario'] = $nivel_usuario;
-				$_SESSION['ativado'] = $ativado;
 			}
 		}
 		header("Location: meuperfil.php?atualizado=1");
