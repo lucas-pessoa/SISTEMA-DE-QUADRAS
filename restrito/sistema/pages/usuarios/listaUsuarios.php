@@ -176,8 +176,9 @@ include "../verificaSessao.php";
                                                 <option value="orgacademica">Organização Acadêmica</option>
                                                 <option value="administrador">Administrador</option>
                                             </select>
+
                                         </div>
-                                        <div id="executaTarefa"></div>
+                                            <div id="executaTarefa"></div>
                                         <hr>
                                         <!-- PHP cria div com tabela de usuários e páginas-->
                                         <div id="tabelaUsuarios"></div>
@@ -199,7 +200,6 @@ include "../verificaSessao.php";
                                                 </div>
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -243,6 +243,20 @@ include "../verificaSessao.php";
 
                     $('#pagina' + nroPg).addClass('active');
 
+                });
+            }
+
+            function editaUsuario(tabelaUsuario, nroUsuario){
+                $.post("listagens/editaUsuario.php", "tabela=" + tabelaUsuario + "&nro_id=" + nroUsuario).done(function(data){
+                    $("#executaTarefa").html(data);
+                    $('#mEditar').modal('show');
+                });
+            }
+
+            function atualizaUsuario(){
+                var dados = $("form").serialize();
+                $.post("listagens/atualizaUsuario.php", dados).done(function(data){
+                    $("#executaTarefa").html(data);
                 });
             }
 

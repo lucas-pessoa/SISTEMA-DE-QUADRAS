@@ -7,9 +7,9 @@ $nro_id  = $_POST["nro_id"];
 $sql = "DELETE FROM $tabela WHERE id_usuario = '{$nro_id}'";
 
 if (mysqli_query($conectabd, $sql)) {
-    echo "<script>alert('Executado com sucesso')</script>";
+    echo "<script>alert('Usuário apagado com sucesso!')</script>";
 } else {
-    echo "<script>alert('Edeu merda')</script> " . mysqli_error($conn);
+    echo "<script>alert('Remoção não realizada. Problema no banco de dados!')</script> " . mysqli_error($conn);
 }
 
 mysqli_close($conectabd);

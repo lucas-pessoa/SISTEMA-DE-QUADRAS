@@ -6,11 +6,12 @@
 body {
   background-color: #f8f8f8;
 }
+
 #wrapper {
   width: 100%;
 }
-#page-wrap
-per {
+
+#page-wrapper {
   padding: 0 15px;
   min-height: 568px;
   background-color: white;

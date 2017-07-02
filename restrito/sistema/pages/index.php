@@ -314,7 +314,7 @@ if ($_SESSION['nivel_usuario'] == 3){
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-    </div>
+    </div><
     <!-- /#wrapper -->
 
     <!-- jQuery -->

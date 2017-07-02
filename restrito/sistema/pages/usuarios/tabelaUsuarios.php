@@ -80,8 +80,8 @@ echo '
 					<td>' . $array["nivel_usuario"] . '</td>
 					<td>' . $array["ativado"] . '</td>
 					<td>
-						<a href="#" id="editar' . $array["id_usuario"] . '" class="btn btn-sm btn-warning" style="margin-bottom: 5px; width:62px">Editar</a><br>
-						<a href="" id="apagar' . $array["id_usuario"] . '" class="btn btn-sm btn-danger" onclick="removeUsuario(\'' . $_POST["user"] .'\', ' . $array["id_usuario"] . '); mudaPagina(1, 10); return false">Apagar</a> 
+						<a href="#" id="editar' . $array["id_usuario"] . '" class="btn btn-sm btn-warning" style="margin-bottom: 5px; width:62px" onclick="editaUsuario(\'' . $_POST["user"] .'\', ' . $array["id_usuario"] . ');">Editar</a><br>
+						<a href="" id="apagar' . $array["id_usuario"] . '" class="btn btn-sm btn-danger" onclick="removeUsuario(\'' . $_POST["user"] .'\', ' . $array["id_usuario"] . '); carregaTabela(' . $pag . ');return false">Apagar</a> 
 					</td>
 				  </tr>';
 		}  
