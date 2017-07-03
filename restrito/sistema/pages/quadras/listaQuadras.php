@@ -62,7 +62,7 @@ include "../verificaSessao.php";
 
 </head>
 
-<body>
+<body onload="carregaTabela(1)">
 
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -154,53 +154,20 @@ include "../verificaSessao.php";
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tabela de Usuários</h1>
+                    <h1 class="page-header">Tabela de Quadras</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Listagem de usuários por categoria</div>
+                        <div id="executaTarefa"></div>
+                        <div class="panel-heading">Listagem de quadras por ID</div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-
-                                    <form method="post">
-                                        <div class="form-group text-center">
-                                            <label>Selecione o tipo de usuário a ser listado</label><br>
-                                            <select id ="tipouser" class="form-control" style="max-width: 300px; margin: 0 auto" onchange="carregaTabela(1)">
-                                                <option disabled selected value>Escolha um tipo de usuário</option>
-                                                <option value="aluno">Aluno</option>
-                                                <option value="docente">Docente</option>
-                                                <option value="orgacademica">Organização Acadêmica</option>
-                                                <option value="administrador">Administrador</option>
-                                            </select>
-
-                                        </div>
-                                            <div id="executaTarefa"></div>
-                                        <hr>
-                                        <!-- PHP cria div com tabela de usuários e páginas-->
-                                        <div id="tabelaUsuarios"></div>
-
-                                        <!-- <div class="modal fade bs-example-modal-sm" id="mApagar" role="dialog">
-                                            <div class="modal-dialog modal-sm">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Apagar</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Confirmar a remoção do usuário?</p>
-                                                    </div>  
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                                        <button type="submit" class="btn btn-danger">Sim</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </form>
+                                    <!-- PHP cria div com tabela de quadras e páginas-->
+                                    <div id="tabelaQuadras"></div>
                                 </div>
                             </div>
                         </div>
@@ -230,10 +197,9 @@ include "../verificaSessao.php";
     <script>
             // Função para dar load nos dados do banco de dados, via ajax, passando tipo, numero de paginas e total como parâmetro
             function carregaTabela(nroPg){
-                var tipoUsuario = document.getElementById("tipouser").value;
-                $.post("tabelaUsuarios.php", "pag=" + nroPg + "&user=" + tipoUsuario).done(function(data){
+                $.post("tabelaQuadras.php", "pag=" + nroPg).done(function(data){
 
-                    $("#tabelaUsuarios").html(data);
+                    $("#tabelaQuadras").html(data);
 
                     var totalPaginas = $('#listaPgs li');
 
@@ -246,22 +212,22 @@ include "../verificaSessao.php";
                 });
             }
 
-            function editaUsuario(tabelaUsuario, nroUsuario){
-                $.post("listagens/editaUsuario.php", "tabela=" + tabelaUsuario + "&nro_id=" + nroUsuario).done(function(data){
+            function editaQuadra(nroQuadra){
+                $.post("listagens/editaQuadra.php", "nro_id=" + nroQuadra).done(function(data){
                     $("#executaTarefa").html(data);
                     $('#mEditar').modal('show');
                 });
             }
 
-            function atualizaUsuario(){
+            function atualizaQuadra(){
                 var dados = $("form").serialize();
-                $.post("listagens/atualizaUsuario.php", dados).done(function(data){
+                $.post("listagens/atualizaQuadra.php", dados).done(function(data){
                     $("#executaTarefa").html(data);
                 });
             }
 
-            function removeUsuario(tabelaUsuario, nroUsuario){
-                $.post("listagens/removeUsuario.php", "tabela=" + tabelaUsuario + "&nro_id=" + nroUsuario).done(function(data){
+            function removeQuadra(nroQuadra){
+                $.post("listagens/removeQuadra.php", "nro_id=" + nroQuadra).done(function(data){
                     $("#executaTarefa").html(data);
                 });
             }

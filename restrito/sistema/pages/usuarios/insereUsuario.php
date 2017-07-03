@@ -114,7 +114,7 @@
                         </li>
                         
                         <li>
-                            <a href="#" data-toggle="modal" data-target="#mConstrucao"><i class="fa fa-calendar fa-fw"></i> Tabela de reservas</a>
+                            <a href="../reservas/tabelaReservas.php"><i class="fa fa-calendar fa-fw"></i> Tabela de reservas</a>
                         </li>
                             <?php
                             if ($_SESSION['nivel_usuario'] == 3){

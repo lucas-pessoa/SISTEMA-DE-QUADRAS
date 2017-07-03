@@ -20,7 +20,7 @@ if ($resultado) {
 			<div class="modal-body">
 					<div class="form-group">
 						<label>ID</label>
-						<input class="form-control" name="editaID" id="editaID" placeholder="Insira o nome completo" value="' . $array["id_usuario"] . '">
+						<input class="form-control" name="editaID" id="editaID" placeholder="Insira o ID" value="' . $array["id_usuario"] . '">
 					</div>
 					<div class="form-group">
 						<label>Nome Completo</label>
