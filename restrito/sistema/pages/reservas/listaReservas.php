@@ -116,7 +116,7 @@ include "../verificaSessao.php";
                             </li>
 
                             <li>
-                                <a href="../reservas/tabelaReservas.php"><i class="fa fa-calendar fa-fw"></i> Tabela de reservas</a>
+                                <a href="../reservas/tabelaReservas.php"><i class="fa fa-calendar fa-fw"></i> Listagem de reservas - quadra tal</a>
                             </li>
                             <?php
                             if ($_SESSION['nivel_usuario'] == 3){
@@ -172,50 +172,7 @@ include "../verificaSessao.php";
                             <div class="panel-heading">Dados da reseva a ser realizada</div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12" id="baseTabela">
-                                    <div class="col-md-4 text-center">
-                                        <h4 style="margin-bottom: 20px">Selecione a data da reserva</h4>
-                                        <div id="calendario" style="margin-left: 40px"></div>
-                                        <div id="legenda" style="margin-top: 5px">
-
-                                            <div style="display: inline-flex;">
-
-                                                <div style="background-color: rgb(255,250,144); border: 1px solid rgb(218,213,94); width: 20px; height: 14px; margin-left: 15px"></div>
-                                                <span style="font-size: 9pt">&nbsp;Data de hoje</span>
-
-                                                <div style="background-color: rgb(0,127,255); border: 1px solid rgb(0,62,255); width: 20px; height: 14px; margin-left: 15px"></div>
-                                                <span style="font-size: 9pt">&nbsp;Data selecionada</span>
-                                                
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 text-center">
-                                        <div id="botoes">
-                                            <h4 style="margin-bottom: 20px">Selecione uma modalidade</h4>
-
-                                            <button type="button" class="btn btn-success btn-lg" id="botao1" style="margin:3px" value="Futebol" disabled>Futebol</button>
-
-                                            <button type="button" class="btn btn-primary btn-lg" id="botao2" style="margin:3px" value="Volei" disabled>Volei</button>
-
-                                            <button type="button" class="btn btn-warning btn-lg" id="botao3" style="margin:3px" value="Tenis" disabled>Tenis</button>
-
-                                            <button type="button" class="btn btn-danger btn-lg" id="botao4" style="margin:3px" value="Basquete" disabled>Basquete</button>
-                                        </div>
-                                        <p id="idModalidade" style="margin-top: 10px; display: none"></p>
-                                        <hr>
-                                        <div id="quadras">
-                                            <h4 style="margin-bottom: 20px">Selecione uma quadra</h4>
-                                            <div class="col-md-6">
-                                                <select id="listaQuadras" multiple style="padding: 10px; width: 300px">
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6" style="margin-top: 20px">
-                                                <button type="button" id="botaoHorarios" class="btn btn-default btn-lg" onclick="verTabela()" disabled>Ver tabela de horários</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -230,93 +187,35 @@ include "../verificaSessao.php";
         <!-- Bootstrap Core JavaScript -->
         <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-        <script>
-            $("#calendario").datepicker({
-                dateFormat: 'dd/mm/yy',
-                dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-                dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab','Dom'],
-                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
-                monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-                nextText: 'Próximo',
-                prevText: 'Anterior'
-            });
+            <!-- Metis Menu Plugin JavaScript -->
+            <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
 
-            $("#calendario td").on("click", function(){
-                for(var i = 1 ; i <= 4 ; i++){ 
-                    $('#botao' + i).prop("disabled", false);
-                }
-            });
+            <!-- Morris Charts JavaScript -->
+            <script src="../../vendor/raphael/raphael.min.js"></script>
+            <script src="../../vendor/morrisjs/morris.min.js"></script>
+            <script src="../../data/morris-data.js"></script>
 
-            function verTabela(){
-                var dia = $(".ui-datepicker-current-day").text();
-                var mes = $(".ui-datepicker-current-day").attr("data-month");
-                var ano = $(".ui-datepicker-current-day").attr("data-year");
+            <!-- Custom Theme JavaScript -->
+            <script src="../../dist/js/sb-admin-2.js"></script>
+        </body>
 
-                var data = dia + '/' + mes + '/' + ano;
-
-                var dataBanco = ano + '-0' + mes + '-0' + dia;
-
-
-                var e = document.getElementById("listaQuadras");
-                var quadraNome = e.options[e.selectedIndex].value;
-                var quadraID = quadraNome.replace('Quadra ','');
-                $.post("requisitaReservas.php", "quadraid=" + quadraID + "&data=" + data+ "&dataBanco=" + dataBanco).done(function(data){
-                    $("#baseTabela").html(data);
-                    $(".panel-heading").html("<a href='' class='btn btn-primary'>< Voltar ao menu anterior</a>")
-                });
-            }
-
-            $("#botoes button").click(function(){
-                var modalidade = $(this).val();
-
-                for(var i = 1 ; i <= 4 ; i++){ 
-                    $('#botao' + i).removeClass('active');
-                }
-                $(this).addClass('active');
-                $("#idModalidade").html("Você selecionou a modalidade " + "<strong>" + modalidade +  "</strong>");
-                $('#idModalidade').slideDown('slow');
-                $('#botaoHorarios').prop("disabled", false);
-
-                $.post("listaQuadras.php", "modalidade=" + modalidade).done(function(data){
-
-                    $("#listaQuadras").html(data);
-
-                });
-            });
-
-        </script>
-
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
-
-        <!-- Morris Charts JavaScript -->
-        <script src="../../vendor/raphael/raphael.min.js"></script>
-        <script src="../../vendor/morrisjs/morris.min.js"></script>
-        <script src="../../data/morris-data.js"></script>
-
-        <!-- Custom Theme JavaScript -->
-        <script src="../../dist/js/sb-admin-2.js"></script>
-    </body>
-
-    <!-- SModal Logout -->
-    <div class="modal fade bs-example-modal-sm" id="mLogout" role="dialog">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Encerrar sessão</h4>
-            </div>
-            <div class="modal-body">
-                <p>Você gostaria mesmo de sair?</p>
-            </div>  
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <a href="../logout.php" class="btn btn-primary">Sim</a>
-                <!-- <button type="button" class="btn btn-primary">Sim</button> -->
+        <!-- SModal Logout -->
+        <div class="modal fade bs-example-modal-sm" id="mLogout" role="dialog">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Encerrar sessão</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Você gostaria mesmo de sair?</p>
+                </div>  
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <a href="../logout.php" class="btn btn-primary">Sim</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-</html>
+    </html>
