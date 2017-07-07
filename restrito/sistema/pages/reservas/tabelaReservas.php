@@ -172,7 +172,7 @@ include "../verificaSessao.php";
                             <div class="panel-heading">Dados da reseva a ser realizada</div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12" id="baseTabela">
+                                    <div id="baseTabela" class="col-md-12">
                                     <div class="col-md-4 text-center">
                                         <h4 style="margin-bottom: 20px">Selecione a data da reserva</h4>
                                         <div id="calendario" style="margin-left: 40px"></div>
@@ -193,7 +193,7 @@ include "../verificaSessao.php";
                                     <div class="col-md-8 text-center">
                                         <div id="botoes">
                                             <h4 style="margin-bottom: 20px">Selecione uma modalidade</h4>
-
+<!-- adicionar uma requisição via post, que dá load dps de selecionar o dia e lista modalidades aqui -->
                                             <button type="button" class="btn btn-success btn-lg" id="botao1" style="margin:3px" value="Futebol" disabled>Futebol</button>
 
                                             <button type="button" class="btn btn-primary btn-lg" id="botao2" style="margin:3px" value="Volei" disabled>Volei</button>
@@ -250,21 +250,59 @@ include "../verificaSessao.php";
 
             function verTabela(){
                 var dia = $(".ui-datepicker-current-day").text();
-                var mes = $(".ui-datepicker-current-day").attr("data-month");
+                var mes = parseInt($(".ui-datepicker-current-day").attr("data-month")) + 1;
                 var ano = $(".ui-datepicker-current-day").attr("data-year");
 
+                if (mes >= 1 && mes < 10){
+                    mes = '0' + mes;
+                }else{
+                    mes = mes;
+                }
+
+                if (dia >= 1 && dia < 10){
+                    dia = '0' + dia;
+                }else{
+                    dia = dia;
+                }
+
                 var data = dia + '/' + mes + '/' + ano;
-
-                var dataBanco = ano + '-0' + mes + '-0' + dia;
-
+                var dataBanco = ano + '-' + mes + '-' + dia;
 
                 var e = document.getElementById("listaQuadras");
                 var quadraNome = e.options[e.selectedIndex].value;
                 var quadraID = quadraNome.replace('Quadra ','');
+
                 $.post("requisitaReservas.php", "quadraid=" + quadraID + "&data=" + data+ "&dataBanco=" + dataBanco).done(function(data){
                     $("#baseTabela").html(data);
                     $(".panel-heading").html("<a href='' class='btn btn-primary'>< Voltar ao menu anterior</a>")
                 });
+            }
+
+            function verTabela2(botao){
+                var quadraID = ($(botao).parent().parent().find("td:eq(0)").attr('id')).replace('quadra','');
+                var dataBanco = $(botao).parent().parent().find("td:eq(1)").attr('id');
+                var data = $(botao).parent().parent().find("td:eq(1)").text();
+                $.post("requisitaReservas.php", "quadraid=" + quadraID + "&data=" + data + "&dataBanco=" + dataBanco).done(function(data){
+                    $("#baseTabela").html(data);
+                    $(".panel-heading").html("<a href='' class='btn btn-primary'>< Voltar ao menu anterior</a>")
+                });
+            }
+
+            function reservaQuadra(botao){
+                var quadra = ($(botao).parent().parent().find("td:eq(0)").attr('id')).replace('quadra','');
+                var data = $(botao).parent().parent().find("td:eq(1)").attr('id');
+                var horaInicio = $(botao).parent().parent().find("td:eq(2)").attr('id');
+                var horaFim = $(botao).parent().parent().find("td:eq(2)").attr('id');
+                var modalidade = $(botao).parent().parent().find('option:selected').attr('id');
+
+                if(modalidade == "noact"){
+                    alert("Selecione uma modalidade.");
+                }else{
+                    $.post("realizaReserva.php", "quadra=" + quadra + "&data=" + data + "&horaInicio=" + horaInicio + "&horaFim=" + horaFim + "&modalidade=" + modalidade).done(function(data){
+                        $("#baseTabela").html(data);
+                    });
+                }
+
             }
 
             $("#botoes button").click(function(){

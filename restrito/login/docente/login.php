@@ -58,11 +58,6 @@ checarSessao();
                             break;
                     }
                 ?>
-                <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Lembrar senha
-                    </label>
-                </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Acessar</button>
             </form>
             <!-- <a href="#" class="forgot-password">Esqueceu sua senha?</a> -->
