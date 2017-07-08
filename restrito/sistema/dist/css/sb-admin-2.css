@@ -6,9 +6,11 @@
 body {
   background-color: #f8f8f8;
 }
+
 #wrapper {
   width: 100%;
 }
+
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;
@@ -17,6 +19,24 @@ body {
 
 #logotopo{
   max-width: 190px;
+}
+
+.esconder{
+  display: none;
+}
+
+.mostrar{
+  display: block;
+}
+
+.erro{
+    font-weight: 600;
+    color: #A10606;
+}
+
+.acerto{
+    font-weight: 600;
+    color: #1A9C14;
 }
 
 @media (min-width: 768px) {

@@ -5,17 +5,17 @@ if (!isset($_SESSION))
 
 include "../../conectabd.php";
 
-$RA = $_POST['RA'];
+$CNPJ = $_POST['CNPJ'];
 $senha = $_POST['senha'];
 
-if ((!$RA) || (!$senha)){
+if ((!$CNPJ) || (!$senha)){
 	
 	header("Location: login.php?erro=1");
 
 }else{
 
 	$senha = md5($senha);
-	$sql = mysqli_query($conectabd, "SELECT * FROM aluno WHERE RA='{$RA}' AND senha='{$senha}'");
+	$sql = mysqli_query($conectabd, "SELECT * FROM OrgAcademica WHERE CNPJ='{$CNPJ}' AND senha='{$senha}'");
 
 	$tuplas_check = mysqli_num_rows($sql);
 
@@ -31,10 +31,9 @@ if ((!$RA) || (!$senha)){
 			}
 
 			$_SESSION['id_usuario'] = $id_usuario;
-			$_SESSION['RA'] = $RA;
+			$_SESSION['CNPJ'] = $CNPJ;
 			$_SESSION['nome'] = $nomeCompleto;
 			$_SESSION['email'] = $email;
-			$_SESSION['curso'] = $curso;
 			$_SESSION['nivel_usuario'] = $nivel_usuario;
 			$_SESSION['ativado'] = $ativado;
 
@@ -44,7 +43,7 @@ if ((!$RA) || (!$senha)){
 				exit;
 			}
 			else{
-				mysqli_query($conectabd, "UPDATE aluno SET data_ultimo_login = now() WHERE id_usuario ='{$id_usuario}'");
+				mysqli_query($conectabd, "UPDATE OrgAcademica SET data_ultimo_login = now() WHERE id_usuario ='{$id_usuario}'");
 				header("Location: ../../sistema/pages/index.php");
 			}
 

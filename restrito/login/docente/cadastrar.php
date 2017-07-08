@@ -4,13 +4,13 @@ include "../../conectabd.php";
 
 $nome = trim($_POST['nome']); //remove caracteres em branco e outros caracteres prefedinidos
 $email = trim($_POST['email']);
-$RA = trim($_POST['RA']);
-$curso = trim($_POST['curso']);
+$SIAPE = trim($_POST['SIAPE']);
+$departamento = trim($_POST['departamento']);
 $senha = md5($_POST['senha']);
 
 /* Vamos checar algum erro nos campos */
 
-if ((!$nome) || (!$email) || (!$curso) || (!$RA)){
+if ((!$nome) || (!$email) || (!$departamento) || (!$SIAPE)){
 
 	if (!$nome){
 		header("Location: cadastro.php?erro=1");
@@ -20,43 +20,43 @@ if ((!$nome) || (!$email) || (!$curso) || (!$RA)){
 		header("Location: cadastro.php?erro=2");
 	}
 
-	if (!$curso){
+	if (!$departamento){
 		header("Location: cadastro.php?erro=3");
 	}
 
-	if (!$RA){
+	if (!$SIAPE){
 		header("Location: cadastro.php?erro=4");
 	}
 
 }else{
 	 //realiza uma consulta no banco
-	$sql_email_check = mysqli_query($conectabd, "SELECT COUNT(id_usuario) FROM aluno WHERE email='{$email}'");
+	$sql_email_check = mysqli_query($conectabd, "SELECT COUNT(id_usuario) FROM docente WHERE email='{$email}'");
 
-	$sql_RA_check = mysqli_query($conectabd, "SELECT COUNT(id_usuario) FROM aluno WHERE RA='{$RA}'");
+	$sql_SIAPE_check = mysqli_query($conectabd, "SELECT COUNT(id_usuario) FROM docente WHERE SIAPE='{$SIAPE}'");
 
 	$eReg = mysqli_fetch_array($sql_email_check); //Obtém uma linha de resultado como um vetor numero e um associativo
-	$raReg = mysqli_fetch_array($sql_RA_check);
+	$siapeReg = mysqli_fetch_array($sql_SIAPE_check);
 
 	$email_check = $eReg[0];
-	$RA_check = $raReg[0];
+	$SIAPE_check = $siapeReg[0];
 
-	if (($email_check > 0) || ($RA_check > 0)){
+	if (($email_check > 0) || ($SIAPE_check > 0)){
 
 		if ($email_check > 0){
 		unset($email);
 		header("Location: cadastro.php?erro=5");
 		}
 
-		if ($RA_check > 0){
-		unset($RA);
+		if ($SIAPE_check > 0){
+		unset($SIAPE);
 		header("Location: cadastro.php?erro=6");
 		}
 
 	}else{
 
 		$sql = mysqli_query($conectabd,
-			"INSERT INTO aluno(nomeCompleto, RA, senha, curso, email, data_cadastro, nivel_usuario) 
-			VALUES('$nome', '$RA', '$senha', '$curso', '$email', now(), '0')") or die(mysqli_error($conectabd));
+			"INSERT INTO docente(nomeCompleto, SIAPE, senha, departamento, email, data_cadastro, nivel_usuario) 
+			VALUES('$nome', '$SIAPE', '$senha', '$departamento', '$email', now(), '1')") or die(mysqli_error($conectabd));
 
 		if (!$sql){
 			header("Location: cadastro.php?erro=7");
@@ -64,7 +64,7 @@ if ((!$nome) || (!$email) || (!$curso) || (!$RA)){
 
 			$id_usuario = mysqli_insert_id($conectabd);
 
-			$sql = mysqli_query($conectabd, "UPDATE aluno SET ativado='1' WHERE id_usuario='{$id_usuario}'");
+			$sql = mysqli_query($conectabd, "UPDATE docente SET ativado='1' WHERE id_usuario='{$id_usuario}'");
 
 			header("Location: login.php?contacriada=1");
 		}

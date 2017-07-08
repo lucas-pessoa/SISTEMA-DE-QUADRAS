@@ -5,17 +5,17 @@ if (!isset($_SESSION))
 
 include "../../conectabd.php";
 
-$RA = $_POST['RA'];
+$login = $_POST['login'];
 $senha = $_POST['senha'];
 
-if ((!$RA) || (!$senha)){
+if ((!$login) || (!$senha)){
 	
 	header("Location: login.php?erro=1");
 
 }else{
 
 	$senha = md5($senha);
-	$sql = mysqli_query($conectabd, "SELECT * FROM aluno WHERE RA='{$RA}' AND senha='{$senha}'");
+	$sql = mysqli_query($conectabd, "SELECT * FROM administrador WHERE login='{$login}' AND senha='{$senha}'");
 
 	$tuplas_check = mysqli_num_rows($sql);
 
@@ -31,10 +31,9 @@ if ((!$RA) || (!$senha)){
 			}
 
 			$_SESSION['id_usuario'] = $id_usuario;
-			$_SESSION['RA'] = $RA;
+			$_SESSION['login'] = $login;
 			$_SESSION['nome'] = $nomeCompleto;
 			$_SESSION['email'] = $email;
-			$_SESSION['curso'] = $curso;
 			$_SESSION['nivel_usuario'] = $nivel_usuario;
 			$_SESSION['ativado'] = $ativado;
 
@@ -44,7 +43,7 @@ if ((!$RA) || (!$senha)){
 				exit;
 			}
 			else{
-				mysqli_query($conectabd, "UPDATE aluno SET data_ultimo_login = now() WHERE id_usuario ='{$id_usuario}'");
+				mysqli_query($conectabd, "UPDATE administrador SET data_ultimo_login = now() WHERE id_usuario ='{$id_usuario}'");
 				header("Location: ../../sistema/pages/index.php");
 			}
 
@@ -55,4 +54,4 @@ if ((!$RA) || (!$senha)){
 	}
 }
 
-?>
+?>	

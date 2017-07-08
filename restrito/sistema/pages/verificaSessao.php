@@ -2,11 +2,12 @@
 
 function checarSessao(){
 // Verifica se não há a variável da sessão que identifica o usuário
-    if (!isset($_SESSION['usuario_id'])){
+    if (!isset($_SESSION['id_usuario'])){
+
 // Destrói a sessão por segurança
         session_destroy();
 // Redireciona o visitante de volta pro login
-        header("Location: ../../login/aluno/login.php");
+        header("Location: ../../../index.html");
         exit;
     }
 }
