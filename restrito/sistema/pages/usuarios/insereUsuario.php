@@ -99,16 +99,12 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Pesquisar ...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#mConstrucao">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                        </li>
+                        <li class="text-center" style="padding: 10px; background-color: #fdfdfd">
+                                <div class="text-center">
+                                    <h4 style="color: #5e5e5e">Menu de navegação</h4>
+                                </div>
+                            </li>
+                        <li>
                         <li>
                             <a href="../index.php"><i class="fa fa-dashboard fa-fw"></i> Página Inicial</a>
                         </li>
@@ -127,6 +123,9 @@
                                         </li>
                                         <li>
                                             <a href="../quadras/insereQuadra.php">Inserir Quadra</a>
+                                        </li>
+                                        <li>
+                                            <a href="../quadras/modalidades/gerenciaModalidades.php">Gerenciar Modalidades</a>
                                         </li>
                                     </ul>
                                 </li>

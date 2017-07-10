@@ -101,14 +101,9 @@ include "../verificaSessao.php";
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
-                            <li class="sidebar-search">
-                                <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" placeholder="Pesquisar ...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#mConstrucao">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
+                            <li class="text-center" style="padding: 10px; background-color: #fdfdfd">
+                                <div class="text-center">
+                                    <h4 style="color: #5e5e5e">Menu de navegação</h4>
                                 </div>
                             </li>
                             <li>
@@ -129,6 +124,9 @@ include "../verificaSessao.php";
                                         </li>
                                         <li>
                                             <a href="../quadras/insereQuadra.php">Inserir Quadra</a>
+                                        </li>
+                                        <li>
+                                            <a href="../quadras/modalidades/gerenciaModalidades.php">Gerenciar Modalidades</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -173,49 +171,49 @@ include "../verificaSessao.php";
                             <div class="panel-body">
                                 <div class="row">
                                     <div id="baseTabela" class="col-md-12">
-                                    <div class="col-md-4 text-center">
-                                        <h4 style="margin-bottom: 20px">Selecione a data da reserva</h4>
-                                        <div id="calendario" style="margin-left: 40px"></div>
-                                        <div id="legenda" style="margin-top: 5px">
+                                        <div class="col-md-4 text-center">
+                                            <h4 style="margin-bottom: 20px">Selecione a data da reserva</h4>
+                                            <div id="calendario" style="margin-left: 40px"></div>
+                                            <div id="legenda" style="margin-top: 5px">
 
-                                            <div style="display: inline-flex;">
+                                                <div style="display: inline-flex;">
 
-                                                <div style="background-color: rgb(255,250,144); border: 1px solid rgb(218,213,94); width: 20px; height: 14px; margin-left: 15px"></div>
-                                                <span style="font-size: 9pt">&nbsp;Data de hoje</span>
+                                                    <div style="background-color: rgb(255,250,144); border: 1px solid rgb(218,213,94); width: 20px; height: 14px; margin-left: 15px"></div>
+                                                    <span style="font-size: 9pt">&nbsp;Data de hoje</span>
 
-                                                <div style="background-color: rgb(0,127,255); border: 1px solid rgb(0,62,255); width: 20px; height: 14px; margin-left: 15px"></div>
-                                                <span style="font-size: 9pt">&nbsp;Data selecionada</span>
-                                                
+                                                    <div style="background-color: rgb(0,127,255); border: 1px solid rgb(0,62,255); width: 20px; height: 14px; margin-left: 15px"></div>
+                                                    <span style="font-size: 9pt">&nbsp;Data selecionada</span>
+
+                                                </div>
+
                                             </div>
+                                        </div>
+                                        <div class="col-md-8 text-center">
+                                            <div id="botoes">
+                                                <h4 style="margin-bottom: 20px">Selecione uma modalidade</h4>
+                                                <!-- adicionar uma requisição via post, que dá load dps de selecionar o dia e lista modalidades aqui -->
+                                                <button type="button" class="btn btn-success btn-lg" id="botao1" style="margin:3px" value="Futebol" disabled>Futebol</button>
 
+                                                <button type="button" class="btn btn-primary btn-lg" id="botao2" style="margin:3px" value="Volei" disabled>Volei</button>
+
+                                                <button type="button" class="btn btn-warning btn-lg" id="botao3" style="margin:3px" value="Tenis" disabled>Tenis</button>
+
+                                                <button type="button" class="btn btn-danger btn-lg" id="botao4" style="margin:3px" value="Basquete" disabled>Basquete</button>
+                                            </div>
+                                            <p id="idModalidade" style="margin-top: 10px; display: none"></p>
+                                            <hr>
+                                            <div id="quadras">
+                                                <h4 style="margin-bottom: 20px">Selecione uma quadra</h4>
+                                                <div class="col-md-6">
+                                                    <select id="listaQuadras" multiple style="padding: 10px; width: 300px">
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6" style="margin-top: 20px">
+                                                    <button type="button" id="botaoHorarios" class="btn btn-default btn-lg" onclick="verTabela()" disabled>Ver tabela de horários</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8 text-center">
-                                        <div id="botoes">
-                                            <h4 style="margin-bottom: 20px">Selecione uma modalidade</h4>
-<!-- adicionar uma requisição via post, que dá load dps de selecionar o dia e lista modalidades aqui -->
-                                            <button type="button" class="btn btn-success btn-lg" id="botao1" style="margin:3px" value="Futebol" disabled>Futebol</button>
-
-                                            <button type="button" class="btn btn-primary btn-lg" id="botao2" style="margin:3px" value="Volei" disabled>Volei</button>
-
-                                            <button type="button" class="btn btn-warning btn-lg" id="botao3" style="margin:3px" value="Tenis" disabled>Tenis</button>
-
-                                            <button type="button" class="btn btn-danger btn-lg" id="botao4" style="margin:3px" value="Basquete" disabled>Basquete</button>
-                                        </div>
-                                        <p id="idModalidade" style="margin-top: 10px; display: none"></p>
-                                        <hr>
-                                        <div id="quadras">
-                                            <h4 style="margin-bottom: 20px">Selecione uma quadra</h4>
-                                            <div class="col-md-6">
-                                                <select id="listaQuadras" multiple style="padding: 10px; width: 300px">
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6" style="margin-top: 20px">
-                                                <button type="button" id="botaoHorarios" class="btn btn-default btn-lg" onclick="verTabela()" disabled>Ver tabela de horários</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -253,6 +251,15 @@ include "../verificaSessao.php";
                 var mes = parseInt($(".ui-datepicker-current-day").attr("data-month")) + 1;
                 var ano = $(".ui-datepicker-current-day").attr("data-year");
 
+                var diaHoje = $(".ui-datepicker-today").text();
+                var mesHoje = parseInt($(".ui-datepicker-today").attr("data-month")) + 1;
+                var anoHoje = $(".ui-datepicker-today").attr("data-year");
+
+                var dataHoje = new Date(mesHoje + '/' + diaHoje + '/' + anoHoje);
+                var dataSelec = new Date(mes + '/' + dia + '/' + ano);
+                var tempoDiff = dataSelec.getTime() - dataHoje.getTime();
+                var difDias = Math.ceil(tempoDiff / (1000 * 3600 * 24));
+
                 if (mes >= 1 && mes < 10){
                     mes = '0' + mes;
                 }else{
@@ -272,7 +279,7 @@ include "../verificaSessao.php";
                 var quadraNome = e.options[e.selectedIndex].value;
                 var quadraID = quadraNome.replace('Quadra ','');
 
-                $.post("requisitaReservas.php", "quadraid=" + quadraID + "&data=" + data+ "&dataBanco=" + dataBanco).done(function(data){
+                $.post("requisitaReservas.php", "quadraid=" + quadraID + "&data=" + data + "&dataBanco=" + dataBanco + "&difDias=" + difDias).done(function(data){
                     $("#baseTabela").html(data);
                     $(".panel-heading").html("<a href='' class='btn btn-primary'>< Voltar ao menu anterior</a>")
                 });
@@ -281,28 +288,45 @@ include "../verificaSessao.php";
             function verTabela2(botao){
                 var quadraID = ($(botao).parent().parent().find("td:eq(0)").attr('id')).replace('quadra','');
                 var dataBanco = $(botao).parent().parent().find("td:eq(1)").attr('id');
+                var difDias = $(botao).parent().parent().find("td:eq(1)").attr('difDias');
                 var data = $(botao).parent().parent().find("td:eq(1)").text();
-                $.post("requisitaReservas.php", "quadraid=" + quadraID + "&data=" + data + "&dataBanco=" + dataBanco).done(function(data){
+                $.post("requisitaReservas.php", "quadraid=" + quadraID + "&data=" + data + "&dataBanco=" + dataBanco+ "&difDias=" + difDias).done(function(data){
                     $("#baseTabela").html(data);
                     $(".panel-heading").html("<a href='' class='btn btn-primary'>< Voltar ao menu anterior</a>")
                 });
             }
 
-            function reservaQuadra(botao){
+            function reservaQuadra(botao, nivel){
                 var quadra = ($(botao).parent().parent().find("td:eq(0)").attr('id')).replace('quadra','');
                 var data = $(botao).parent().parent().find("td:eq(1)").attr('id');
                 var horaInicio = $(botao).parent().parent().find("td:eq(2)").attr('id');
                 var horaFim = $(botao).parent().parent().find("td:eq(2)").attr('id');
                 var modalidade = $(botao).parent().parent().find('option:selected').attr('id');
+                var difDias = $(botao).parent().parent().find("td:eq(1)").attr('difDias');
 
-                if(modalidade == "noact"){
-                    alert("Selecione uma modalidade.");
+                if(difDias < 0){
+                    alert("Este dia já se passou. Não é possível realizar a reserva.");
                 }else{
-                    $.post("realizaReserva.php", "quadra=" + quadra + "&data=" + data + "&horaInicio=" + horaInicio + "&horaFim=" + horaFim + "&modalidade=" + modalidade).done(function(data){
-                        $("#baseTabela").html(data);
-                    });
+                    if (nivel == 0 && difDias > 1 || nivel == 1 && difDias > 3 || nivel ==2 && difDias > 7){
+                        alert("Você está tentando reservar a quadra com uma antecedência maior do que a permitida.");
+                    }else{
+                        if(modalidade == "noact"){
+                            alert("Selecione uma modalidade.");
+                        }else{
+                            $.post("realizaReserva.php", "quadra=" + quadra + "&data=" + data + "&horaInicio=" + horaInicio + "&horaFim=" + horaFim + "&modalidade=" + modalidade).done(function(data){
+                                $("#baseTabela").html(data);
+                            });
+                        }
+                    }
                 }
+            }
 
+            function desreservaQuadra(botao, nivel){
+                var idReserva = $(botao).parent().parent().attr('idReserva');
+
+                $.post("removeReserva.php", "idReserva=" + idReserva).done(function(data){
+                    $("#baseTabela").html(data);
+                });
             }
 
             $("#botoes button").click(function(){

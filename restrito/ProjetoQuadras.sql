@@ -6,7 +6,6 @@
 # DROP TABLE Docente;
 # DROP TABLE OrgAcademica;
 
-#Entidade forte com atributos herdados de Usuario
 CREATE TABLE OrgAcademica(
 	id_usuario int(5) NOT NULL auto_increment,
 	nomeCompleto varchar(100) NOT NULL default '',
@@ -15,14 +14,14 @@ CREATE TABLE OrgAcademica(
 	email varchar(100) NOT NULL default '',
 	data_cadastro datetime NOT NULL default '1000-01-01 00:00:00',
 	data_ultimo_login datetime NOT NULL default '1000-01-01 00:00:00',
-	nivel_usuario enum('0','1','2','3') NOT NULL default '0',
+	nivel_usuario enum('0','1','2','3') NOT NULL default '2',
 	ativado enum('0','1') NOT NULL default '0',
 
 	PRIMARY KEY (id_usuario)
 
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-#Entidade forte com atributos herdados de Usuario
+
 CREATE TABLE Docente(
 	id_usuario int(5) NOT NULL auto_increment,
 	nomeCompleto varchar(100) NOT NULL default '',
@@ -32,14 +31,14 @@ CREATE TABLE Docente(
 	email varchar(100) NOT NULL default '',
 	data_cadastro datetime NOT NULL default '1000-01-01 00:00:00',
 	data_ultimo_login datetime NOT NULL default '1000-01-01 00:00:00',
-	nivel_usuario enum('0','1','2','3') NOT NULL default '0',
+	nivel_usuario enum('0','1','2','3') NOT NULL default '1',
 	ativado enum('0','1') NOT NULL default '0',
 
 	PRIMARY KEY (id_usuario)
 	
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-#Entidade forte com atributos herdados de Usuario
+
 CREATE TABLE Aluno(
 	id_usuario int(5) NOT NULL auto_increment,
 	nomeCompleto varchar(100) NOT NULL default '',
@@ -56,7 +55,7 @@ CREATE TABLE Aluno(
 	
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-#Entidade forte com atributos herdados de Usuario
+
 CREATE TABLE Administrador(
 	id_usuario int(5) NOT NULL auto_increment,
 	nomeCompleto varchar(100) NOT NULL default '',
@@ -65,14 +64,14 @@ CREATE TABLE Administrador(
 	email varchar(100) NOT NULL default '',
 	data_cadastro datetime NOT NULL default '1000-01-01 00:00:00',
 	data_ultimo_login datetime NOT NULL default '1000-01-01 00:00:00',
-	nivel_usuario enum('0','1','2','3') NOT NULL default '0',
+	nivel_usuario enum('0','1','2','3') NOT NULL default '3',
 	ativado enum('0','1') NOT NULL default '0',
 
 	PRIMARY KEY (id_usuario)
 	
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-# Entidade forte
+
 CREATE TABLE Quadra(
 	nroQuadra int(3) NOT NULL auto_increment,
 	descricao varchar(300) NOT NULL default '',
@@ -83,7 +82,7 @@ CREATE TABLE Quadra(
 
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-# Entidade fraca com chave estrangeira de quadra e respectivo usuario
+
 CREATE TABLE Reserva(
 	id_reserva int(3) NOT NULL auto_increment,
 	data_reserva date NOT NULL default '1000-01-01',
@@ -91,7 +90,6 @@ CREATE TABLE Reserva(
 	hora_fim date NOT NULL default '00:00:00',
 	ativ_praticada varchar(15) NOT NULL default '',
 
-	#Chaves estrangeiras
 	nroQuadra int(3) NOT NULL,
 	login varchar(14) NOT NULL,
 	RA int(6) NOT NULL,
@@ -107,7 +105,7 @@ CREATE TABLE Reserva(
 
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-# Entidade fraca com chave estrangeira de quadra junto da chave primaria propria
+
 CREATE TABLE AtivOferecida(
 	id_atividade int(3) NOT NULL auto_increment,
 	nroQuadra int(3) NOT NULL,

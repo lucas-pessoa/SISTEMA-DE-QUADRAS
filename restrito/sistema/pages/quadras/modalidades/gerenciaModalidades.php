@@ -1,5 +1,5 @@
 <?php
-include "../verificaSessao.php";
+include "../../verificaSessao.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,22 +16,22 @@ include "../verificaSessao.php";
     <title>Área Restrita - Sistema de Quadras UFSCar</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Adicional CSS -->
-    <link href="../../vendor/adicional/css/adicional.css" rel="stylesheet">
+    <link href="../../../vendor/adicional/css/adicional.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../../../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../../../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../../vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="../../../vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,24 +45,24 @@ include "../verificaSessao.php";
         <!-- this icon shows in browser toolbar -->
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
         <!-- this icon shows in browser toolbar -->
-        <link rel="apple-touch-icon" sizes="57x57" href="../../../assets/img/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="../../../assets/img/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../../../assets/img/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="../../../assets/img/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../../../assets/img/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="../../../assets/img/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="../../../assets/img/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="../../../assets/img/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/img/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="../../../assets/img/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/img/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="../../../assets/img/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/img/favicon/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="../../../../assets/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="../../../../assets/img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../../../../assets/img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../../../../assets/img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="../../../../assets/img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="../../../../assets/img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="../../../../assets/img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="../../../../assets/img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../../../assets/img/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="../../../../assets/img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../../../assets/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="../../../../assets/img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../../assets/img/favicon/favicon-16x16.png">
         <link rel="manifest" href="assets/img/favicon/manifest.json">
 
     </head>
 
-    <body>
+    <body onload="carregaModalidades(1); carregaQuadras()">
 
         <div id="wrapper">
 
@@ -86,7 +86,7 @@ include "../verificaSessao.php";
                             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="../meuperfil/meuperfil.php"><i class="fa fa-user fa-fw"></i> Meus dados pessoais</a>
+                            <li><a href="../../meuperfil/meuperfil.php"><i class="fa fa-user fa-fw"></i> Meus dados pessoais</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -105,11 +105,11 @@ include "../verificaSessao.php";
                                 </div>
                             </li>
                             <li>
-                                <a href="../index.php"><i class="fa fa-dashboard fa-fw"></i> Página Inicial</a>
+                                <a href="../../index.php"><i class="fa fa-dashboard fa-fw"></i> Página Inicial</a>
                             </li>
 
                             <li>
-                                <a href="../reservas/tabelaReservas.php"><i class="fa fa-calendar fa-fw"></i> Tabela de reservas</a>
+                                <a href="../../reservas/tabelaReservas.php"><i class="fa fa-calendar fa-fw"></i> Tabela de reservas</a>
                             </li>
                             <?php
                             if ($_SESSION['nivel_usuario'] == 3){
@@ -118,13 +118,13 @@ include "../verificaSessao.php";
                                     <a href="#"><i class="fa fa-list-alt fa-fw"></i> Administrar Quadras<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
-                                            <a href="../quadras/listaQuadras.php">Tabela de Quadras</a>
+                                            <a href="../../quadras/listaQuadras.php">Tabela de Quadras</a>
                                         </li>
                                         <li>
-                                            <a href="../quadras/insereQuadra.php">Inserir Quadra</a>
+                                            <a href="../../quadras/insereQuadra.php">Inserir Quadra</a>
                                         </li>
                                         <li>
-                                            <a href="../quadras/modalidades/gerenciaModalidades.php">Gerenciar Modalidades</a>
+                                            <a href="../../quadras/modalidades/gerenciaModalidades.php">Gerenciar Modalidades</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -132,17 +132,17 @@ include "../verificaSessao.php";
                                     <a href="#"><i class="fa fa-user fa-fw"></i> Gerenciar Usuários<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
-                                            <a href="../usuarios/listaUsuarios.php">Tabela de Usuários</a>
+                                            <a href="../../usuarios/listaUsuarios.php">Tabela de Usuários</a>
                                         </li>
                                         <li>
-                                            <a href="../usuarios/insereUsuario.php">Adicionar Usuário</a>
+                                            <a href="../../usuarios/insereUsuario.php">Adicionar Usuário</a>
                                         </li>
                                     </ul>
                                 </li>';
                             }
                             ?>
                             <li>
-                                <a href="../meuperfil/meuperfil.php"><i class="fa fa-edit fa-fw"></i> Meu Perfil</a>
+                                <a href="../../meuperfil/meuperfil.php"><i class="fa fa-edit fa-fw"></i> Meu Perfil</a>
                             </li> 
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#mLogout"><i class="fa fa-sign-out fa-fw"></i> Encerrar sessão</a>
@@ -157,54 +157,50 @@ include "../verificaSessao.php";
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Adicionar Quadra</h1>
+                        <h1 class="page-header">Gerenciar Modalidades</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div id="retornaResultado"></div>
+                    <div id="cadastrarModalidade" class="col-lg-6">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Dados da quadra a ser inserida</div>
+                            <div class="panel-heading">Inserir nova modalidade</div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-
-                                        <form action="insercoes/cadastrarQuadra.php" method="POST">
                                             <div class="form-group">
-                                                <label>Descrição da quadra</label>
-                                                <input class="form-control" name="descricao" id="descricao" placeholder="Insira uma descrição para a quadra" autofocus>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Reservada</label>
-                                                <select class="form-control" name="reservada" id="reservada" required>
-                                                    <option value="Não">Não</option>
-                                                    <option value="Sim">Sim</option>
+                                                <label>Nome da modalidade</label>
+                                                <select class="form-control" id="listaModalidades">
+                                                    <option id="Futebol">Futebol</option>
+                                                    <option id="Basquete">Basquete</option>
+                                                    <option id="Volei">Volei</option>
+                                                    <option id="Tenis">Tenis</option>
                                                 </select>
                                             </div>
-                                        <?php 
-                                        $erro = (isset($_GET['erro']) ? $_GET['erro'] : null);
-                                        $quadracriada = (isset($_GET['quadracriada']) ? $_GET['quadracriada'] : null);
+                                            <div class="form-group">
+                                                <label>Quadra associada à modalidade</label>
+                                                <select class="form-control" id="listaQuadras">
 
-                                        switch($erro){
-                                            case 1:
-                                                echo "<p class='erro text-center'>Problema na criação da quadra!</p>";
-                                                break;
-                                        }
-
-                                        switch($quadracriada){
-                                            case 1:
-                                            echo "<p class='acerto text-center'>Quadra cadastrada com sucesso!</p>";
-                                            break;
-                                        }
-                                        
-                                        ?>
+                                                </select>
+                                            </div>
                                             <hr>
                                             <div class="form-group text-center">
-                                                <button type="submit" class="btn btn-primary btn-lg">Inserir quadra</button>
+                                                <button class="btn btn-primary" onclick="insereModalidade(); carregaModalidades(1); return false;">Inserir modalidade</button>
                                             </div>
-                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Tabela de modalidades</div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12" id="tabelaModalidades">
                                     </div>
                                 </div>
                             </div>
@@ -215,21 +211,74 @@ include "../verificaSessao.php";
         </div>
 
         <!-- jQuery -->
-        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../../vendor/jquery/jquery.min.js"></script>
 
+        <script>
+            function carregaModalidades(nroPg){
+                $.post("listagens/listaModalidades.php", "pag=" + nroPg).done(function(data){
+
+                    $("#tabelaModalidades").html(data);
+
+                    var totalPaginas = $('#listaPgs li');
+
+                    for(var i = 1 ; i <= totalPaginas.length ; i++){ //For para mudar o css do contador de páginas
+                        $('#pagina' + i).removeClass('active');
+                    }
+
+                    $('#pagina' + nroPg).addClass('active');
+
+                });
+            }
+
+            function carregaQuadras(){
+                $.post("listagens/listaQuadraModalidades.php").done(function(data){
+                    $("#listaQuadras").html(data);
+                });
+            }
+
+            function insereModalidade(){
+                var nroQuadra = $('#listaQuadras').find('option:selected').attr('id');
+
+                var modalidade = $('#listaModalidades').find('option:selected').attr('id');
+
+                $.post("insercoes/cadastrarModalidade.php", "nroQuadra=" + nroQuadra + "&modalidade=" + modalidade).done(function(data){
+                    $("#retornaResultado").html(data);
+                });
+            }
+
+            function editaModalidade(nroModalidade){
+                $.post("listagens/editaModalidade.php", "nro_id=" + nroModalidade).done(function(data){
+                    $("#retornaResultado").html(data);
+                    $('#mEditar').modal('show');
+                });
+            }
+
+            function atualizaModalidade(){
+                var dados = $("form").serialize();
+                $.post("listagens/atualizaModalidade.php", dados).done(function(data){
+                    $("#retornaResultado").html(data);
+                });
+            }
+
+            function removeModalidade(nroModalidade){
+                $.post("listagens/removeModalidade.php", "nro_id=" + nroModalidade).done(function(data){
+                    $("#retornaResultado").html(data);
+                });
+            }
+        </script>
         <!-- Bootstrap Core JavaScript -->
-        <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
-        <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
+        <script src="../../../vendor/metisMenu/metisMenu.min.js"></script>
 
         <!-- Morris Charts JavaScript -->
-        <script src="../../vendor/raphael/raphael.min.js"></script>
-        <script src="../../vendor/morrisjs/morris.min.js"></script>
-        <script src="../../data/morris-data.js"></script>
+        <script src="../../../vendor/raphael/raphael.min.js"></script>
+        <script src="../../../vendor/morrisjs/morris.min.js"></script>
+        <script src="../../../data/morris-data.js"></script>
 
         <!-- Custom Theme JavaScript -->
-        <script src="../../dist/js/sb-admin-2.js"></script>
+        <script src="../../../dist/js/sb-admin-2.js"></script>
     </body>
 
     <!-- SModal Logout -->
