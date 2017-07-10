@@ -37,3 +37,9 @@ O framework [Bootstrap v4](https://v4-alpha.getbootstrap.com/) foi utilizado par
 
 #### SB Admin 2
 A aparência e efeitos interativos do sistema restrito, foram obtidos através do projeto [SB Admin 2](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), que também é um projeto livre e estruturado para *admin dashboard* sem implementações, apenas sendo ofertado o template.
+
+#### JQuery
+A biblioteca [JQuery](https://jquery.com/) foi utilizada como forma de otimizar as chamadas em javascript, em principal as chamadas assíncronas, bem como com o propósito de colocar efeitos junto ao sistema, tornando algumas transições mais suaves.
+
+#### JQuery UI
+O sistema de calendário dinâmico baseado em AJAX foi adaptado tendo por base a aplicação [JQuery UI](http://jqueryui.com/), desenvolvida totalmente com base na biblioteca JQuery.
